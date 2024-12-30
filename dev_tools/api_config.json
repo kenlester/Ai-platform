@@ -1,0 +1,38 @@
+{
+    "api": {
+        "tokensPerMinute": 80000,
+        "maxBurst": 80000,
+        "useLocalFirst": true,
+        "retryAttempts": 5,
+        "backoffMaxMs": 32000
+    },
+    "endpoints": {
+        "ollama": "http://localhost:11434",
+        "anthropic": "https://api.anthropic.com/v1/complete"
+    },
+    "models": {
+        "local": {
+            "default": "mistral",
+            "fallback": "llama2"
+        },
+        "api": {
+            "default": "claude-2.1",
+            "fallback": "claude-instant-1.2"
+        }
+    },
+    "strategies": {
+        "costOptimized": {
+            "useLocalFirst": true,
+            "fallbackToAPI": false
+        },
+        "performanceOptimized": {
+            "useLocalFirst": false,
+            "fallbackToLocal": true
+        },
+        "hybrid": {
+            "useLocalFirst": true,
+            "fallbackToAPI": true,
+            "fallbackToLocal": true
+        }
+    }
+}

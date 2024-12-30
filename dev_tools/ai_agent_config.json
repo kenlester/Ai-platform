@@ -1,0 +1,120 @@
+{
+    "agent_settings": {
+        "model_settings": {
+            "llm_model": "mistral",
+            "temperature": 0.7,
+            "max_tokens": 2048,
+            "context_window": 4096
+        },
+        "analysis_settings": {
+            "min_code_block_size": 50,
+            "max_code_block_size": 1000,
+            "overlap_size": 200,
+            "similarity_threshold": 0.85
+        },
+        "improvement_settings": {
+            "max_concurrent_improvements": 3,
+            "validation_rounds": 2,
+            "auto_implement": true,
+            "backup_before_changes": true
+        },
+        "monitoring_settings": {
+            "performance_threshold": 0.8,
+            "security_strictness": "high",
+            "validation_metrics": [
+                "code_quality",
+                "security_score",
+                "performance_impact",
+                "integration_compatibility"
+            ]
+        }
+    },
+    "vector_db_settings": {
+        "collection_settings": {
+            "vector_size": 384,
+            "distance_metric": "cosine",
+            "optimize_interval_sec": 300
+        },
+        "storage_settings": {
+            "max_points_per_collection": 1000000,
+            "index_type": "hnsw",
+            "cleanup_interval_days": 30
+        }
+    },
+    "integration_settings": {
+        "services": {
+            "ollama": {
+                "url": "http://192.168.137.69:11434",
+                "timeout_sec": 30,
+                "retry_attempts": 3
+            },
+            "qdrant": {
+                "url": "http://192.168.137.34:6333",
+                "timeout_sec": 15,
+                "retry_attempts": 3
+            }
+        },
+        "endpoints": {
+            "health_check_interval_sec": 60,
+            "connection_timeout_sec": 10
+        }
+    },
+    "development_patterns": {
+        "preferred_patterns": [
+            "dependency_injection",
+            "factory_method",
+            "repository_pattern",
+            "strategy_pattern"
+        ],
+        "ai_patterns": [
+            "model_versioning",
+            "pipeline_architecture",
+            "feature_store",
+            "experiment_tracking"
+        ],
+        "security_patterns": [
+            "rate_limiting",
+            "input_validation",
+            "authentication_flow",
+            "secure_logging"
+        ]
+    },
+    "improvement_strategies": {
+        "code_quality": {
+            "priority": "high",
+            "metrics": [
+                "complexity",
+                "maintainability",
+                "test_coverage",
+                "documentation"
+            ]
+        },
+        "ai_capabilities": {
+            "priority": "high",
+            "focus_areas": [
+                "model_integration",
+                "data_pipeline",
+                "inference_optimization",
+                "training_workflow"
+            ]
+        },
+        "scalability": {
+            "priority": "medium",
+            "aspects": [
+                "load_balancing",
+                "caching",
+                "async_processing",
+                "resource_optimization"
+            ]
+        },
+        "security": {
+            "priority": "high",
+            "requirements": [
+                "input_sanitization",
+                "access_control",
+                "data_encryption",
+                "audit_logging"
+            ]
+        }
+    }
+}

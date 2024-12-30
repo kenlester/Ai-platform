@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Platform Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">AI Platform Dashboard</h1>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <!-- Container Status -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">LLM Service (CT 200)</h2>
+                <div class="status-card" data-container="200">
+                    <p>Status: <span class="status-badge">Checking...</span></p>
+                    <p>Model: <span class="model-info">Loading...</span></p>
+                    <p>Memory Usage: <span class="memory-usage">Loading...</span></p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">Vector DB (CT 201)</h2>
+                <div class="status-card" data-container="201">
+                    <p>Status: <span class="status-badge">Checking...</span></p>
+                    <p>Collections: <span class="collections-info">Loading...</span></p>
+                    <p>Memory Usage: <span class="memory-usage">Loading...</span></p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">Dev Environment (CT 202)</h2>
+                <div class="status-card" data-container="202">
+                    <p>Status: <span class="status-badge">Checking...</span></p>
+                    <p>Active Tools: <span class="tools-info">Loading...</span></p>
+                    <p>Memory Usage: <span class="memory-usage">Loading...</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Function Status -->
+        <div class="bg-white p-4 rounded-lg shadow mb-8">
+            <h2 class="text-xl font-bold mb-4">Function Status</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="function-status">
+                <div class="border p-4 rounded">
+                    <h3 class="font-bold">Code Analysis</h3>
+                    <p>Status: <span class="analyzer-status">Checking...</span></p>
+                    <p>Last Run: <span class="last-run">Never</span></p>
+                    <p>Files Analyzed: <span class="files-analyzed">0</span></p>
+                </div>
+                <div class="border p-4 rounded">
+                    <h3 class="font-bold">AI Development Agent</h3>
+                    <p>Status: <span class="agent-status">Checking...</span></p>
+                    <p>Active Tasks: <span class="active-tasks">0</span></p>
+                    <p>Improvements Made: <span class="improvements">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Charts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">Resource Usage</h2>
+                <canvas id="resourceChart"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">Function Activity</h2>
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-xl font-bold mb-4">Recent Activity</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-2">Timestamp</th>
+                            <th class="px-4 py-2">Function</th>
+                            <th class="px-4 py-2">Action</th>
+                            <th class="px-4 py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activity-log">
+                        <tr>
+                            <td colspan="4" class="px-4 py-2 text-center">Loading activity data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

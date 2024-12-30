@@ -1,0 +1,52 @@
+# Environment variables and secrets
+.env
+*.env
+.env.*
+api_keys.txt
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Local development
+.local/
+.cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Container and deployment specific
+*.pem
+*.key
+*.crt
+*.cert
+
+# Temporary files
+*.tmp
+*.temp
+*.bak

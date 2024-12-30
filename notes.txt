@@ -1,0 +1,269 @@
+AI Assistant Platform Administration Guide
+
+1. SYSTEM ARCHITECTURE
+=====================
+Three LXC containers running on Proxmox:
+
+LLM Container (CT 200):
+- IP: 192.168.137.69
+- Resources: 4 cores, 8GB RAM, 32GB storage
+- Service: Ollama (port 11434)
+- Purpose: Local LLM inference
+- Key file: /etc/systemd/system/ollama.service
+- Models: llama2 (default), mistral, mixtral, codellama, neural-chat
+- Performance optimizations:
+  * vm.swappiness=10
+  * vm.vfs_cache_pressure=50
+
+Vector DB Container (CT 201):
+- IP: 192.168.137.34
+- Resources: 2 cores, 4GB RAM, 8GB storage
+- Service: Qdrant (port 6333)
+- Purpose: Vector embeddings storage
+- Key file: /etc/systemd/system/qdrant.service
+- Default collection: queries (384-dimensional vectors)
+
+Development Container (CT 202):
+- IP: 192.168.137.162
+- Resources: 2 cores, 4GB RAM, 24GB storage
+- Services: Docker with FastAPI (8000) and Frontend (3000)
+- Purpose: Application logic and UI
+- Environment: Python with ML/AI packages
+- Location: /root/ai-app-template
+
+2. INITIALIZATION SEQUENCE
+=========================
+
+IMPORTANT: Follow this sequence exactly to ensure proper system initialization:
+
+1. Start Containers in Order:
+   ```
+   pct start 200  # Start LLM container first
+   sleep 10       # Wait for container to fully initialize
+   pct start 201  # Start Vector DB
+   sleep 5        # Wait for initialization
+   pct start 202  # Start Development container
+   ```
+
+2. Verify Container Status:
+   ```
+   pct status 200  # Should show "running"
+   pct status 201  # Should show "running"
+   pct status 202  # Should show "running"
+   ```
+
+3. Initialize LLM Model:
+   ```
+   cd ai-app-template
+   ./setup_model.sh    # Pulls and sets up the llama2 model
+   ```
+
+4. Verify Model Installation:
+   ```
+   curl http://192.168.137.69:11434/api/tags  # Should list llama2
+   ```
+
+5. Start Application Services:
+   ```
+   cd ai-app-template
+   docker compose down  # Ensure clean state
+   docker compose up --build -d  # Start services
+   ```
+
+6. Verify System Health:
+   ```
+   ./test.sh  # Run full system test
+   ```
+
+3. COMMON OPERATIONS
+===================
+
+Container Management:
+-------------------
+# View container status
+pct status <container_id>
+
+# Start containers (use initialization sequence above)
+pct start 200  # LLM
+pct start 201  # VectorDB
+pct start 202  # Development
+
+# Stop containers (reverse order)
+pct stop 202
+pct stop 201
+pct stop 200
+
+# Enter container shell
+pct enter <container_id>
+
+Service Management:
+-----------------
+# LLM Service (CT 200)
+systemctl status ollama
+systemctl start ollama
+systemctl stop ollama
+systemctl restart ollama
+
+# Vector DB (CT 201)
+systemctl status qdrant
+systemctl start qdrant
+systemctl stop qdrant
+systemctl restart qdrant
+
+# Development (CT 202)
+systemctl status docker
+docker compose up --build    # Start application
+docker compose down         # Stop application
+docker compose logs        # View logs
+
+4. MODEL MANAGEMENT
+==================
+# List available models
+curl http://192.168.137.69:11434/api/tags  # Preferred method
+ollama list  # Alternative if inside CT 200
+
+# Pull new model
+./setup_model.sh  # For default llama2 model
+ollama pull <model_name>  # For other models
+
+# Remove model
+ollama rm <model_name>
+
+# Change active model
+1. Edit main.py "model" parameter in /query endpoint
+2. Restart the application
+
+Available Models:
+- Base: llama2, llama2:13b, llama2:70b, mistral, mixtral
+- Code: codellama, codellama:13b, codellama:python, codellama:instruct
+- Specialized: neural-chat, llama2-uncensored, stable-code:3b, dolphin-phi, phi
+
+5. TROUBLESHOOTING
+=================
+
+System Health Check:
+------------------
+Run: ./test.sh
+This will test:
+- Container connectivity
+- Service status
+- Model availability
+- API endpoints
+- Vector DB operations
+
+IMPORTANT: If test.sh shows failures, follow this troubleshooting sequence:
+
+1. Backend Service Issues (192.168.137.162:8000):
+   a. Check Docker containers:
+      ```
+      docker compose ps  # Check container status
+      docker compose logs  # Check for errors
+      ```
+   b. Verify network:
+      ```
+      curl http://192.168.137.162:8000/health  # Should return status
+      ```
+   c. Common fixes:
+      ```
+      docker compose down
+      docker system prune -a  # Clean up Docker system
+      docker compose up --build -d
+      ```
+
+2. LLM Model Issues:
+   a. Verify model installation:
+      ```
+      curl http://192.168.137.69:11434/api/tags
+      ```
+   b. Check Ollama service:
+      ```
+      curl http://192.168.137.69:11434/api/health
+      ```
+   c. Common fixes:
+      ```
+      ./setup_model.sh  # Reinstall model
+      systemctl restart ollama  # Restart service
+      ```
+
+3. Vector DB Issues:
+   a. Check collection status:
+      ```
+      curl http://192.168.137.34:6333/collections
+      ```
+   b. Verify service:
+      ```
+      curl http://192.168.137.34:6333/health
+      ```
+
+Common Issues & Solutions:
+------------------------
+1. "llama2 model not found" after pulling:
+   - Verify model download: curl http://192.168.137.69:11434/api/tags
+   - Check disk space: df -h
+   - Reinstall: ./setup_model.sh
+   - Restart Ollama: systemctl restart ollama
+
+2. Backend service not connecting:
+   - Check Docker network: docker network ls
+   - Verify ports: netstat -tulpn
+   - Check logs: docker compose logs backend
+   - Rebuild: docker compose up --build -d
+
+3. Slow model responses:
+   - Check RAM: free -h
+   - Monitor CPU: top
+   - Consider using smaller model variant
+   - Adjust vm.swappiness if needed
+
+6. PERFORMANCE OPTIMIZATION
+==========================
+
+LLM Container:
+-------------
+- Monitor RAM: free -h
+- Check CPU: top
+- Adjust vm.swappiness if needed
+- Consider reducing model size if performance issues persist
+
+Vector DB:
+---------
+- Monitor collection size: curl http://192.168.137.34:6333/collections
+- Clean up old vectors periodically
+- Consider index optimization for large collections
+
+Application:
+-----------
+- Monitor Docker resources: docker stats
+- Check logs for bottlenecks
+- Consider scaling container resources if needed
+
+7. BACKUP & MAINTENANCE
+======================
+
+Regular Tasks:
+------------
+1. Backup vector collections
+2. Update models periodically
+3. Clean up unused Docker images
+4. Monitor disk usage
+5. Check system logs
+
+Backup Commands:
+--------------
+# Backup vector collections
+curl -X GET http://192.168.137.34:6333/collections/queries/points > backup_vectors.json
+
+# Clean Docker
+docker system prune -a
+
+# Update system
+pct enter <container_id>
+apt update && apt upgrade
+
+Remember: 
+- Always follow the initialization sequence when starting the system
+- Run test.sh after any major changes
+- Keep regular backups of vector collections
+- Monitor system resources regularly
+- dont install docker on pve
+- alway make sure commands are executed on the correct container
