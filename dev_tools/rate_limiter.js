@@ -1,114 +1,146 @@
-// Rate Limiter for API Requests
-// Implements token bucket algorithm with fallback strategy
+// AI Platform Rate Limiter
+// Implements token bucket algorithm with minute-based rate limiting
 
-class RateLimiter {
-    constructor(tokensPerMinute = 80000, maxBurst = tokensPerMinute) {
+class TokenBucket {
+    constructor(tokensPerMinute = 80000, burstSize = tokensPerMinute) {
         this.tokensPerMinute = tokensPerMinute;
-        this.maxBurst = maxBurst;
-        this.tokens = maxBurst;
+        this.burstSize = burstSize;
+        this.tokens = burstSize;
         this.lastRefill = Date.now();
-        this.queue = [];
-        this.processing = false;
+        this.tokenAddRate = tokensPerMinute / 60000; // tokens per millisecond
     }
 
-    async refillTokens() {
+    refill() {
         const now = Date.now();
         const timePassed = now - this.lastRefill;
-        const refillAmount = (timePassed / 60000) * this.tokensPerMinute;
-        this.tokens = Math.min(this.maxBurst, this.tokens + refillAmount);
+        const newTokens = timePassed * this.tokenAddRate;
+        this.tokens = Math.min(this.burstSize, this.tokens + newTokens);
         this.lastRefill = now;
     }
 
-    async processQueue() {
-        if (this.processing) return;
-        this.processing = true;
-
-        while (this.queue.length > 0) {
-            await this.refillTokens();
-            
-            if (this.tokens < this.queue[0].tokens) {
-                // Not enough tokens, wait and try again
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                continue;
-            }
-
-            const request = this.queue.shift();
-            this.tokens -= request.tokens;
-            
-            try {
-                const result = await request.execute();
-                request.resolve(result);
-            } catch (error) {
-                if (error.type === 'rate_limit_error') {
-                    // If we still hit rate limit, implement exponential backoff
-                    const backoffTime = Math.min(1000 * Math.pow(2, request.retries), 32000);
-                    request.retries = (request.retries || 0) + 1;
-                    
-                    if (request.retries <= 5) {
-                        await new Promise(resolve => setTimeout(resolve, backoffTime));
-                        this.queue.unshift(request);
-                    } else {
-                        request.reject(new Error('Max retries exceeded'));
-                    }
-                } else {
-                    request.reject(error);
-                }
-            }
+    tryConsume(tokens) {
+        this.refill();
+        if (this.tokens >= tokens) {
+            this.tokens -= tokens;
+            return true;
         }
-
-        this.processing = false;
+        return false;
     }
 
-    async executeRequest(tokenCost, execute) {
+    getWaitTime(tokens) {
+        this.refill();
+        const missingTokens = tokens - this.tokens;
+        if (missingTokens <= 0) return 0;
+        return Math.ceil((missingTokens / this.tokenAddRate) * 1000);
+    }
+}
+
+class RateLimiter {
+    constructor() {
+        this.buckets = new Map();
+        this.defaultLimit = 80000; // Default to Anthropic's limit
+        this.requestQueue = [];
+        this.isProcessing = false;
+    }
+
+    async handleRequest(orgId, tokens, requestFn) {
+        if (!this.buckets.has(orgId)) {
+            this.buckets.set(orgId, new TokenBucket(this.defaultLimit));
+        }
+
+        const bucket = this.buckets.get(orgId);
+        
         return new Promise((resolve, reject) => {
-            this.queue.push({
-                tokens: tokenCost,
-                execute,
+            this.requestQueue.push({
+                orgId,
+                tokens,
+                requestFn,
                 resolve,
                 reject,
-                retries: 0
+                attempts: 0,
+                maxAttempts: 3
             });
-            this.processQueue();
+            
+            if (!this.isProcessing) {
+                this.processQueue();
+            }
         });
     }
 
-    // Helper to estimate token count from text
+    async processQueue() {
+        if (this.isProcessing || this.requestQueue.length === 0) return;
+        
+        this.isProcessing = true;
+        
+        while (this.requestQueue.length > 0) {
+            const request = this.requestQueue[0];
+            const bucket = this.buckets.get(request.orgId);
+            
+            if (bucket.tryConsume(request.tokens)) {
+                this.requestQueue.shift(); // Remove from queue
+                
+                try {
+                    const result = await request.requestFn();
+                    request.resolve(result);
+                } catch (error) {
+                    if (error.type === 'rate_limit_error' && request.attempts < request.maxAttempts) {
+                        // Re-queue with backoff
+                        request.attempts++;
+                        const waitTime = Math.pow(2, request.attempts) * 1000;
+                        setTimeout(() => {
+                            this.requestQueue.push(request);
+                        }, waitTime);
+                    } else {
+                        request.reject(error);
+                    }
+                }
+            } else {
+                // Calculate wait time and pause processing
+                const waitTime = bucket.getWaitTime(request.tokens);
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+            }
+        }
+        
+        this.isProcessing = false;
+    }
+
+    // Helper to estimate tokens (very rough estimation)
     static estimateTokens(text) {
         // Rough estimation: ~4 chars per token
         return Math.ceil(text.length / 4);
     }
 }
 
-// Example usage:
+// Example usage in VSCode extension:
 /*
-const limiter = new RateLimiter();
+const rateLimiter = new RateLimiter();
 
-// Example API call with rate limiting
+// Wrap API calls:
 async function makeAPICall(prompt) {
-    const tokenCost = RateLimiter.estimateTokens(prompt);
+    const estimatedTokens = RateLimiter.estimateTokens(prompt);
     
-    return limiter.executeRequest(tokenCost, async () => {
-        // Your API call here
-        const response = await fetch('https://api.example.com', {
-            method: 'POST',
-            body: JSON.stringify({ prompt })
-        });
-        return response.json();
-    });
-}
-
-// Usage with fallback to local model
-async function generateText(prompt) {
     try {
-        return await makeAPICall(prompt);
+        const response = await rateLimiter.handleRequest(
+            'your-org-id',
+            estimatedTokens,
+            async () => {
+                // Your actual API call here
+                return await anthropic.messages.create({
+                    model: "claude-2",
+                    max_tokens: 1000,
+                    messages: [{ role: "user", content: prompt }]
+                });
+            }
+        );
+        return response;
     } catch (error) {
-        if (error.message === 'Max retries exceeded') {
-            // Fallback to local Ollama model
-            return fallbackToLocalModel(prompt);
-        }
+        console.error('API call failed:', error);
         throw error;
     }
 }
 */
 
-module.exports = RateLimiter;
+module.exports = {
+    RateLimiter,
+    TokenBucket
+};

@@ -1,17 +1,37 @@
 {
-  "name": "openai-example",
-  "version": "1.0.0",
-  "type": "module",
+  "name": "ai-platform-tools",
+  "version": "1.0.2",
+  "description": "AI Platform Development Tools",
+  "main": "index.js",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
   "scripts": {
-    "build": "tsc && chmod +x dist/openai_mcp_server.js",
-    "start": "node dist/openai_mcp_server.js"
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.0.4",
-    "openai": "^4.0.0"
+    "@anthropic-ai/sdk": "^0.10.2"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "^5.0.0"
+    "@types/node": "^16.18.122",
+    "@types/vscode": "^1.60.0",
+    "typescript": "^4.9.5"
+  },
+  "activationEvents": [
+    "onCommand:aiPlatform.makeAPICall",
+    "onCommand:aiPlatform.batchProcess"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiPlatform.makeAPICall",
+        "title": "AI Platform: Make API Call"
+      },
+      {
+        "command": "aiPlatform.batchProcess",
+        "title": "AI Platform: Batch Process"
+      }
+    ]
   }
 }

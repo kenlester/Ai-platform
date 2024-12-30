@@ -1,151 +1,143 @@
-# AI Platform Development Tools
+# AI Platform VSCode Extension
 
-## Failure Learning System
+## Rate-Limited AI Integration
 
-The Failure Learning System is an AI-driven monitoring and recovery system that learns from system failures and automatically applies successful recovery patterns.
+This extension provides AI capabilities with built-in rate limiting and caching to prevent API quota issues.
 
-### Components
+### Features
 
-1. Main Service
-- Script: `failure_learning_system.py`
-- Service: `ai-failure-learning.service`
-- Config: `failure_patterns.json`
-- Database: `/opt/ai_platform/failure_learning.db`
-
-2. Container Dependencies
-```
-CT 201 (Qdrant) → CT 200 (Ollama) → CT 202 (Dev) → CT 203 (MCP)
-```
+- Token-based rate limiting (80,000 tokens/minute default)
+- Request queuing and automatic retries
+- Response caching
+- Batch processing support
+- Configurable settings
 
 ### Installation
 
-1. Ensure directories exist:
+1. Install dependencies:
 ```bash
-mkdir -p /opt/ai_platform
-chmod 755 /opt/ai_platform
+cd dev_tools
+npm install
 ```
 
-2. Install service:
+2. Build the extension:
 ```bash
-cp ai-failure-learning.service /etc/systemd/system/
-systemctl daemon-reload
+npm run compile
 ```
 
-3. Start service:
+3. Set up your API key:
+   - Open VSCode Settings
+   - Search for "AI Platform"
+   - Enter your Anthropic API key
+
+### Usage
+
+1. Single Selection Processing:
+   - Select text in editor
+   - Press `Ctrl+Shift+A` (Windows/Linux) or `Cmd+Shift+A` (Mac)
+   - Or use command palette: "AI Platform: Process Selection"
+
+2. Batch Processing:
+   - Make multiple selections (using Alt+Click)
+   - Press `Ctrl+Shift+B` (Windows/Linux) or `Cmd+Shift+B` (Mac)
+   - Or use command palette: "AI Platform: Batch Process Selections"
+
+### Rate Limiting
+
+The extension implements a token bucket algorithm to manage API rate limits:
+
+- Default limit: 80,000 tokens per minute
+- Automatic request queuing when limit reached
+- Exponential backoff for retries
+- Cache frequently used responses
+
+Configuration in VSCode settings:
+```json
+{
+  "aiPlatform.rateLimit": 80000,
+  "aiPlatform.retryAttempts": 3,
+  "aiPlatform.cacheTimeout": 300
+}
+```
+
+### Batch Processing
+
+Efficiently handles multiple selections:
+
+- Automatically combines requests within token limits
+- Processes in optimal batches
+- Maintains selection order
+- Configurable batch size
+
+### Error Handling
+
+The extension provides robust error handling:
+
+- Rate limit detection and automatic retry
+- Clear error messages in status bar
+- Detailed error logging
+- Configurable retry attempts
+
+### Advanced Configuration
+
+Additional settings available:
+
+```json
+{
+  "aiPlatform.model": "claude-2",
+  "aiPlatform.temperature": 0.7,
+  "aiPlatform.maxTokens": 1000,
+  "aiPlatform.batchSize": 60000
+}
+```
+
+### Development
+
+1. Clone the repository
+2. Install dependencies:
 ```bash
-systemctl start ai-failure-learning
-systemctl enable ai-failure-learning
+npm install
 ```
 
-### Monitoring
-
-1. Check service status:
+3. Build:
 ```bash
-systemctl status ai-failure-learning --no-pager
+npm run compile
 ```
 
-2. View logs:
+4. Run tests:
 ```bash
-# Service logs
-tail -f /var/log/ai-failure-learning.log
-
-# Error logs
-tail -f /var/log/ai-failure-learning.error.log
-
-# Journal logs
-journalctl -u ai-failure-learning --no-pager -n 50
+npm test
 ```
-
-3. Database queries:
-```sql
--- Check learned patterns
-SELECT pattern_hash, success_count, fail_count, best_solution 
-FROM learned_patterns 
-ORDER BY success_count DESC;
-
--- View recent failures
-SELECT timestamp, service, error_type, recovery_success 
-FROM failure_events 
-ORDER BY timestamp DESC 
-LIMIT 10;
-```
-
-### Cost Management
-
-The system is designed to minimize costs by:
-1. Using local Ollama models instead of OpenAI API
-2. Implementing efficient memory usage (~32MB per container)
-3. Operating in CPU-only mode
-4. Caching successful recovery patterns
-
-### Recovery Procedures
-
-If the learning system fails:
-
-1. Check logs for errors:
-```bash
-journalctl -u ai-failure-learning --no-pager -n 100
-```
-
-2. Verify database access:
-```bash
-ls -l /opt/ai_platform/failure_learning.db
-```
-
-3. Restart service:
-```bash
-systemctl restart ai-failure-learning
-```
-
-4. Verify monitoring:
-```bash
-tail -f /var/log/ai-failure-learning.log
-```
-
-### Best Practices
-
-1. Regular Maintenance
-- Monitor log files for growth
-- Review learned patterns periodically
-- Backup failure_learning.db regularly
-
-2. Performance Optimization
-- Keep database size manageable
-- Review and prune old failure events
-- Monitor memory usage
-
-3. Cost Control
-- Use local models exclusively
-- Implement caching where possible
-- Batch operations when feasible
 
 ### Troubleshooting
 
-1. Service won't start:
-- Check permissions on /opt/ai_platform
-- Verify Python virtual environment
-- Check log files for errors
+1. Rate Limit Issues:
+   - Check current token usage in status bar
+   - Adjust rate limit in settings
+   - Increase retry attempts
 
-2. Learning not working:
-- Verify database permissions
-- Check pattern matching logic
-- Review failure_patterns.json
+2. API Errors:
+   - Verify API key in settings
+   - Check network connectivity
+   - Review error messages in Output panel
 
-3. Recovery not automatic:
-- Check solution cache
-- Verify pvesh permissions
-- Review container status checks
+3. Performance Issues:
+   - Adjust batch size
+   - Configure cache timeout
+   - Monitor token usage
 
-### Future Improvements
+### Contributing
 
-1. Planned Features:
-- Pattern prediction for preemptive recovery
-- Advanced failure analysis
-- Cross-container dependency mapping
+1. Fork the repository
+2. Create feature branch
+3. Make changes
+4. Run tests
+5. Submit pull request
 
-2. Optimization Opportunities:
-- Enhanced caching strategies
-- Improved pattern recognition
-- Resource usage optimization
+### License
 
-For more details, see ADMIN_GUIDE.md
+MIT License - see LICENSE file
+
+---
+
+For more information, see the [AI Platform Documentation](../README.md)

@@ -1,0 +1,112 @@
+{
+  "name": "ai-platform-tools",
+  "displayName": "AI Platform Tools",
+  "description": "AI Platform development tools with rate limiting",
+  "version": "1.0.2",
+  "publisher": "ai-platform",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:aiPlatform.makeAPICall",
+    "onCommand:aiPlatform.batchProcess"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiPlatform.makeAPICall",
+        "title": "AI Platform: Process Selection"
+      },
+      {
+        "command": "aiPlatform.batchProcess",
+        "title": "AI Platform: Batch Process Selections"
+      }
+    ],
+    "configuration": {
+      "title": "AI Platform",
+      "properties": {
+        "aiPlatform.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic API Key"
+        },
+        "aiPlatform.rateLimit": {
+          "type": "number",
+          "default": 80000,
+          "description": "Token rate limit per minute"
+        },
+        "aiPlatform.cacheTimeout": {
+          "type": "number",
+          "default": 300,
+          "description": "Cache timeout in seconds"
+        },
+        "aiPlatform.model": {
+          "type": "string",
+          "default": "claude-2",
+          "enum": [
+            "claude-2",
+            "claude-instant-1"
+          ],
+          "description": "Model to use for API calls"
+        },
+        "aiPlatform.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Temperature for API calls"
+        },
+        "aiPlatform.maxTokens": {
+          "type": "number",
+          "default": 1000,
+          "description": "Maximum tokens for API response"
+        },
+        "aiPlatform.retryAttempts": {
+          "type": "number",
+          "default": 3,
+          "description": "Number of retry attempts for failed API calls"
+        },
+        "aiPlatform.batchSize": {
+          "type": "number",
+          "default": 60000,
+          "description": "Maximum tokens per batch for batch processing"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "aiPlatform.makeAPICall",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "aiPlatform.batchProcess",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "when": "editorHasSelection"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.10.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.x",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^5.x",
+    "@typescript-eslint/parser": "^5.x",
+    "eslint": "^8.x",
+    "typescript": "^4.9.5"
+  }
+}

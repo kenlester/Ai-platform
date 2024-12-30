@@ -169,12 +169,15 @@ apt install -y nodejs npm
 ```
 
 ## Performance Baselines
-- LLM Service: ~32MB idle, up to 1.5GB under load
-- Vector DB: ~60MB idle, up to 768MB under load
-- Development Env: ~100MB idle, up to 768MB under load
-- MCP Server: ~50MB idle, up to 384MB under load
-- CPU Usage: Peaks during model inference and vector operations
-- Network: Low latency required (<50ms)
+- LLM Service: ~39MB idle (0.47%), up to 1.5GB under load
+- Vector DB: ~57MB idle (1.39%), up to 768MB under load
+- Development Env: ~79MB idle (1.92%), up to 768MB under load
+- MCP Server: ~43MB idle (2.09%), up to 384MB under load
+- CPU Usage: 
+  * LLM: Peaks at 24.6% during inference
+  * MCP: Peaks at 46.7% during API processing
+  * Normal idle state: 0-3%
+- Network: Low latency maintained (<50ms)
 
 ## Best Practices
 1. Always use containers for deployment

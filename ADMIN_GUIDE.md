@@ -9,12 +9,21 @@ Current State (Last Updated: 2024-12-30):
 ├── All Containers: Running
 ├── Core Services
 │   ├── LLM (CT 200): Active
-│   │   └── Ollama v0.5.4 (CPU mode)
+│   │   ├── Ollama v0.5.4 (CPU mode)
+│   │   ├── Memory: 39MB/8GB (0.47%)
+│   │   └── Status: Optimal
 │   ├── Vector DB (CT 201): Active
-│   │   └── Qdrant (Collections API ready)
+│   │   ├── Qdrant (Collections API ready)
+│   │   ├── Memory: 57MB/4GB (1.39%)
+│   │   └── Status: Optimal
 │   ├── Development (CT 202): Ready
-│   │   └── Python 3.10.12
+│   │   ├── Python 3.10.12
+│   │   ├── Memory: 79MB/4GB (1.92%)
+│   │   └── Status: Optimal
 │   └── MCP Server (CT 203): Configured
+│       ├── Node.js v18.20.5
+│       ├── Memory: 43MB/2GB (2.09%)
+│       └── Status: Optimal
 │
 └── System Health: Operational
 
@@ -44,7 +53,7 @@ Core Components:
 - Verify service availability before use
 - Some services may require initialization or configuration
 - System operates in CPU-only mode - no GPU acceleration available
-- Memory baselines: LLM ~9MB idle (scales with model usage), Vector DB ~60MB
+- Memory baselines: LLM ~39MB idle (scales with model usage), Vector DB ~57MB
 - All API endpoints must be verified before use
 - Python 3.10.12 is the current development version
 - Node.js 18.20.5 LTS is the current MCP server version
