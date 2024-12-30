@@ -1,0 +1,59 @@
+{
+    "initial_patterns": {
+        "ollama:service_inactive:200": {
+            "description": "Ollama service not running in LLM container",
+            "recovery_steps": [
+                "pct exec 200 -- systemctl restart ollama",
+                "sleep 5",
+                "pct exec 200 -- curl http://localhost:11434/api/version"
+            ],
+            "verification": "curl_check",
+            "dependencies": []
+        },
+        "qdrant:service_inactive:201": {
+            "description": "Qdrant service not running in Vector DB container",
+            "recovery_steps": [
+                "pct exec 201 -- systemctl restart qdrant",
+                "sleep 5",
+                "pct exec 201 -- curl http://localhost:6333/collections"
+            ],
+            "verification": "curl_check",
+            "dependencies": []
+        },
+        "mcp:service_inactive:203": {
+            "description": "MCP service not running",
+            "recovery_steps": [
+                "pct exec 203 -- pkill -f 'node openai_mcp_example.ts'",
+                "sleep 2",
+                "pct exec 203 -- nohup node openai_mcp_example.ts > openai_mcp.log 2>&1 &"
+            ],
+            "verification": "process_check",
+            "dependencies": ["ollama:service_inactive:200", "qdrant:service_inactive:201"]
+        }
+    },
+    "learning_parameters": {
+        "success_threshold": 0.8,
+        "min_attempts": 3,
+        "max_recovery_time": 300,
+        "check_interval": 60,
+        "pattern_analysis_interval": 3600
+    },
+    "system_metrics": {
+        "memory_threshold": 90,
+        "disk_threshold": 85,
+        "load_threshold": 5.0,
+        "service_timeout": 10
+    },
+    "recovery_priorities": {
+        "critical": ["ollama:service_inactive:200", "qdrant:service_inactive:201"],
+        "high": ["mcp:service_inactive:203"],
+        "medium": [],
+        "low": []
+    },
+    "notification_settings": {
+        "log_level": "INFO",
+        "alert_on_repeated_failures": true,
+        "alert_threshold": 3,
+        "alert_interval": 1800
+    }
+}

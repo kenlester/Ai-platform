@@ -219,19 +219,62 @@ CT 203: # OpenAI MCP logs
 Note: Log paths and formats may vary. Consult system administrator for current logging configuration.
 ```
 
-### Recovery
-Basic Steps:
-Services:
-├── Check status with systemctl status --no-pager [service]  # Prevents paging output
-├── View logs with journalctl -u [service] -n 50
-├── Verify configuration files exist
-├── Ensure required API keys are set
-└── Restart with systemctl restart [service]
+### Recovery & Learning System
+The platform includes an AI-driven failure learning system that:
+1. Monitors container and service health
+2. Learns from failures and recovery patterns
+3. Automatically attempts recovery based on learned patterns
+4. Maintains a database of successful recovery strategies
+
+Components:
+├── Failure Learning Service
+│   ├── Path: /root/Ai-platform/dev_tools/failure_learning_system.py
+│   ├── Config: /root/Ai-platform/dev_tools/failure_patterns.json
+│   └── Service: /etc/systemd/system/ai-failure-learning.service
+│
+├── Container Dependencies
+│   ├── CT 201 (Qdrant): Starts first (order=1)
+│   ├── CT 200 (Ollama): Starts second (order=2)
+│   ├── CT 202 (Dev): Starts third (order=3)
+│   └── CT 203 (MCP): Starts last (order=4, depends on 200,201)
+│
+└── Manual Recovery Steps (if needed):
+    ├── Check status: systemctl status --no-pager [service]
+    ├── View logs: journalctl -u [service] -n 50
+    ├── Verify configs exist
+    ├── Check API keys
+    └── Restart: systemctl restart [service]
 
 Storage:
 ├── Verify mounts
 └── Restore if needed
     └── mount /dev/sda1 /mnt/extra_storage
+
+### Cost Management
+Cost Optimization Strategies:
+├── Local Model Usage
+│   ├── Use Ollama's local models (CT 200)
+│   ├── Avoid OpenAI API when possible
+│   └── Implement caching for repeated queries
+│
+├── Resource Optimization
+│   ├── Current Baselines:
+│   │   ├── CT 200 (LLM): ~32MB memory
+│   │   ├── CT 201 (Vector DB): ~59MB memory
+│   │   └── CT 203 (MCP): ~31MB memory
+│   └── CPU-only mode for all services
+│
+├── Funding Options
+│   ├── GitHub Sponsors
+│   ├── Ko-fi (see SETUP_KOFI.md)
+│   ├── Patreon
+│   └── Usage-based API access
+│
+└── Cost Controls
+    ├── Rate limiting (dev_tools/rate_limiter.js)
+    ├── Batch processing
+    ├── Query caching
+    └── Local model priority
 
 ### Performance Notes
 - LLM Service operates in CPU-only mode with AVX2 support

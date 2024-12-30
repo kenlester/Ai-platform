@@ -1,121 +1,151 @@
 # AI Platform Development Tools
 
-## Rate Limiting and API Management
+## Failure Learning System
 
-This directory contains tools for managing API rate limits and costs through intelligent request handling and local model fallback.
+The Failure Learning System is an AI-driven monitoring and recovery system that learns from system failures and automatically applies successful recovery patterns.
 
 ### Components
 
-1. **rate_limiter.js**
-   - Token bucket implementation
-   - Handles rate limit errors
-   - Implements exponential backoff
-   - Queue management for requests
+1. Main Service
+- Script: `failure_learning_system.py`
+- Service: `ai-failure-learning.service`
+- Config: `failure_patterns.json`
+- Database: `/opt/ai_platform/failure_learning.db`
 
-2. **api_manager.js**
-   - High-level API management
-   - Automatic fallback to local models
-   - Configurable strategies
-   - Error handling
-
-3. **api_config.json**
-   - Configuration settings
-   - Endpoint definitions
-   - Model preferences
-   - Strategy definitions
-
-### Quick Start
-
-```javascript
-const APIManager = require('./api_manager');
-const config = require('./api_config.json');
-
-const apiManager = new APIManager({
-    tokensPerMinute: config.api.tokensPerMinute,
-    useLocalFirst: config.api.useLocalFirst
-});
-
-// Cost-optimized usage (prefer local models)
-async function generateText(prompt) {
-    try {
-        const result = await apiManager.generate(prompt, {
-            apiEndpoint: config.endpoints.anthropic,
-            apiKey: process.env.ANTHROPIC_API_KEY
-        });
-        return result;
-    } catch (error) {
-        console.error('Generation failed:', error);
-        return null;
-    }
-}
+2. Container Dependencies
+```
+CT 201 (Qdrant) → CT 200 (Ollama) → CT 202 (Dev) → CT 203 (MCP)
 ```
 
-### Rate Limit Management
+### Installation
 
-The system implements several strategies to avoid rate limit errors:
-
-1. **Token Bucketing**
-   - Tracks token usage per minute
-   - Queues requests when near limit
-   - Distributes load over time
-
-2. **Fallback Strategy**
-   - Automatic switch to local models when rate limited
-   - Configurable fallback preferences
-   - Multiple model support
-
-3. **Request Optimization**
-   - Request queuing and batching
-   - Exponential backoff on failures
-   - Token usage estimation
-
-### Configuration
-
-Edit `api_config.json` to customize:
-
-```json
-{
-    "api": {
-        "tokensPerMinute": 80000,
-        "useLocalFirst": true
-    },
-    "strategies": {
-        "costOptimized": {
-            "useLocalFirst": true,
-            "fallbackToAPI": false
-        }
-    }
-}
-```
-
-### Best Practices
-
-1. **Cost Management**
-   - Use local models for development
-   - Enable useLocalFirst for non-critical tasks
-   - Monitor token usage
-
-2. **Performance**
-   - Configure appropriate retry attempts
-   - Use batching for multiple requests
-   - Implement request caching
-
-3. **Error Handling**
-   - Always implement fallback strategies
-   - Log rate limit errors
-   - Monitor API response times
-
-### Environment Setup
-
-Required environment variables:
+1. Ensure directories exist:
 ```bash
-export ANTHROPIC_API_KEY="your-api-key"
+mkdir -p /opt/ai_platform
+chmod 755 /opt/ai_platform
+```
+
+2. Install service:
+```bash
+cp ai-failure-learning.service /etc/systemd/system/
+systemctl daemon-reload
+```
+
+3. Start service:
+```bash
+systemctl start ai-failure-learning
+systemctl enable ai-failure-learning
 ```
 
 ### Monitoring
 
-Monitor rate limits and usage:
-```javascript
-const limiter = new RateLimiter();
-console.log('Available tokens:', limiter.tokens);
-console.log('Queue length:', limiter.queue.length);
+1. Check service status:
+```bash
+systemctl status ai-failure-learning --no-pager
+```
+
+2. View logs:
+```bash
+# Service logs
+tail -f /var/log/ai-failure-learning.log
+
+# Error logs
+tail -f /var/log/ai-failure-learning.error.log
+
+# Journal logs
+journalctl -u ai-failure-learning --no-pager -n 50
+```
+
+3. Database queries:
+```sql
+-- Check learned patterns
+SELECT pattern_hash, success_count, fail_count, best_solution 
+FROM learned_patterns 
+ORDER BY success_count DESC;
+
+-- View recent failures
+SELECT timestamp, service, error_type, recovery_success 
+FROM failure_events 
+ORDER BY timestamp DESC 
+LIMIT 10;
+```
+
+### Cost Management
+
+The system is designed to minimize costs by:
+1. Using local Ollama models instead of OpenAI API
+2. Implementing efficient memory usage (~32MB per container)
+3. Operating in CPU-only mode
+4. Caching successful recovery patterns
+
+### Recovery Procedures
+
+If the learning system fails:
+
+1. Check logs for errors:
+```bash
+journalctl -u ai-failure-learning --no-pager -n 100
+```
+
+2. Verify database access:
+```bash
+ls -l /opt/ai_platform/failure_learning.db
+```
+
+3. Restart service:
+```bash
+systemctl restart ai-failure-learning
+```
+
+4. Verify monitoring:
+```bash
+tail -f /var/log/ai-failure-learning.log
+```
+
+### Best Practices
+
+1. Regular Maintenance
+- Monitor log files for growth
+- Review learned patterns periodically
+- Backup failure_learning.db regularly
+
+2. Performance Optimization
+- Keep database size manageable
+- Review and prune old failure events
+- Monitor memory usage
+
+3. Cost Control
+- Use local models exclusively
+- Implement caching where possible
+- Batch operations when feasible
+
+### Troubleshooting
+
+1. Service won't start:
+- Check permissions on /opt/ai_platform
+- Verify Python virtual environment
+- Check log files for errors
+
+2. Learning not working:
+- Verify database permissions
+- Check pattern matching logic
+- Review failure_patterns.json
+
+3. Recovery not automatic:
+- Check solution cache
+- Verify pvesh permissions
+- Review container status checks
+
+### Future Improvements
+
+1. Planned Features:
+- Pattern prediction for preemptive recovery
+- Advanced failure analysis
+- Cross-container dependency mapping
+
+2. Optimization Opportunities:
+- Enhanced caching strategies
+- Improved pattern recognition
+- Resource usage optimization
+
+For more details, see ADMIN_GUIDE.md

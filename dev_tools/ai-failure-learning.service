@@ -1,0 +1,43 @@
+[Unit]
+Description=AI Platform Failure Learning System
+After=network.target
+Wants=network-online.target
+After=pve.service
+After=pvedaemon.service
+After=pvescheduler.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/Ai-platform/dev_tools
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 failure_learning_system.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/ai-failure-learning.log
+StandardError=append:/var/log/ai-failure-learning.error.log
+RuntimeDirectory=ai-platform
+StateDirectory=ai-platform
+ExecStartPre=/bin/mkdir -p /opt/ai_platform
+ExecStartPre=/bin/chown -R root:root /opt/ai_platform
+ExecStartPre=/bin/chmod -R 755 /opt/ai_platform
+
+# Give the service time to start up and initialize
+TimeoutStartSec=60
+
+# Ensure proper shutdown
+TimeoutStopSec=30
+
+# Security hardening
+ProtectSystem=false
+ProtectHome=false
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+
+[Install]
+WantedBy=multi-user.target
