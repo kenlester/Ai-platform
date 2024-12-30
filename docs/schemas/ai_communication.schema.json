@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Communication Schema",
+  "description": "Schema for standardized AI-to-AI communication to minimize token usage",
+  "type": "object",
+  "required": ["type", "content", "metrics"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["query", "response", "error", "metric", "pattern"],
+      "description": "Type of communication for efficient routing"
+    },
+    "content": {
+      "type": "object",
+      "required": ["data", "format"],
+      "properties": {
+        "data": {
+          "type": ["object", "array", "string"],
+          "description": "Actual payload, structured for minimal token usage"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["json", "text", "code", "pattern"],
+          "description": "Data format for optimal parsing"
+        },
+        "compression": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether content is compressed"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["tokens", "latency"],
+      "properties": {
+        "tokens": {
+          "type": "object",
+          "properties": {
+            "input": {"type": "number"},
+            "output": {"type": "number"},
+            "total": {"type": "number"}
+          }
+        },
+        "latency": {
+          "type": "number",
+          "description": "Processing time in ms"
+        },
+        "cache": {
+          "type": "object",
+          "properties": {
+            "hit": {"type": "boolean"},
+            "key": {"type": "string"}
+          }
+        }
+      }
+    },
+    "optimization": {
+      "type": "object",
+      "properties": {
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Processing priority level"
+        },
+        "caching": {
+          "type": "object",
+          "properties": {
+            "ttl": {"type": "number"},
+            "strategy": {
+              "type": "string",
+              "enum": ["memory", "disk", "none"]
+            }
+          }
+        },
+        "batch": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "string"},
+            "index": {"type": "integer"},
+            "total": {"type": "integer"}
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "type": "query",
+      "content": {
+        "data": {"task": "optimize_code", "language": "python"},
+        "format": "json"
+      },
+      "metrics": {
+        "tokens": {"input": 10, "output": 0, "total": 10},
+        "latency": 50
+      },
+      "optimization": {
+        "priority": 2,
+        "caching": {"ttl": 3600, "strategy": "memory"}
+      }
+    }
+  ]
+}

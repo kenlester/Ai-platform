@@ -1,0 +1,27 @@
+{
+  "name": "anthropic-api-client",
+  "version": "1.0.0",
+  "description": "Rate-limited Anthropic API client with token optimization",
+  "main": "client.js",
+  "types": "client.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@qdrant/js-client-rest": "^1.12.0",
+    "node-fetch": "^2.6.7",
+    "lru-cache": "^10.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.30",
+    "@types/node-fetch": "^2.6.11",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.3"
+  },
+  "overrides": {
+    "glob": "^10.3.10"
+  }
+}

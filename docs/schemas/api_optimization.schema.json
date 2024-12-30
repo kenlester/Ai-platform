@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "API Token Optimization Schema",
+  "description": "Schema for optimizing API token usage and reducing costs",
+  "type": "object",
+  "required": ["model", "settings", "usage_patterns"],
+  "properties": {
+    "model": {
+      "type": "string",
+      "enum": ["claude-2", "claude-instant-1"],
+      "description": "Target AI model for optimization"
+    },
+    "settings": {
+      "type": "object",
+      "required": ["temperature", "max_tokens"],
+      "properties": {
+        "temperature": {
+          "type": "object",
+          "properties": {
+            "default": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.7
+            },
+            "dynamic": {
+              "type": "boolean",
+              "default": true,
+              "description": "Adjust temperature based on task type"
+            },
+            "task_settings": {
+              "type": "object",
+              "properties": {
+                "code_review": {"type": "number", "default": 0.2},
+                "creative": {"type": "number", "default": 0.8},
+                "analysis": {"type": "number", "default": 0.3}
+              }
+            }
+          }
+        },
+        "max_tokens": {
+          "type": "object",
+          "properties": {
+            "default": {"type": "integer", "default": 1000},
+            "dynamic": {
+              "type": "boolean",
+              "default": true,
+              "description": "Adjust max tokens based on input"
+            },
+            "adjustment_factor": {
+              "type": "number",
+              "default": 1.5,
+              "description": "Multiplier for input length"
+            }
+          }
+        }
+      }
+    },
+    "usage_patterns": {
+      "type": "object",
+      "required": ["batch_processing", "caching"],
+      "properties": {
+        "batch_processing": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "max_batch_size": {"type": "integer", "default": 60000},
+            "optimal_chunk_size": {"type": "integer", "default": 4000},
+            "delay_ms": {"type": "integer", "default": 100}
+          }
+        },
+        "caching": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "ttl_seconds": {"type": "integer", "default": 3600},
+            "max_cache_mb": {"type": "integer", "default": 512},
+            "similarity_threshold": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.95
+            }
+          }
+        }
+      }
+    },
+    "cost_optimization": {
+      "type": "object",
+      "properties": {
+        "max_daily_tokens": {"type": "integer", "default": 1000000},
+        "max_cost_usd": {"type": "number"},
+        "priority_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "token_budget": {
+          "type": "object",
+          "properties": {
+            "code_review": {"type": "number", "default": 0.3},
+            "analysis": {"type": "number", "default": 0.4},
+            "general": {"type": "number", "default": 0.3}
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "track_usage": {"type": "boolean", "default": true},
+        "alert_threshold": {
+          "type": "object",
+          "properties": {
+            "tokens_per_minute": {"type": "integer", "default": 80000},
+            "cost_per_hour": {"type": "number"},
+            "error_rate": {"type": "number", "default": 0.05}
+          }
+        },
+        "metrics_retention_days": {"type": "integer", "default": 30}
+      }
+    }
+  },
+  "examples": [
+    {
+      "model": "claude-2",
+      "settings": {
+        "temperature": {
+          "default": 0.7,
+          "dynamic": true,
+          "task_settings": {
+            "code_review": 0.2,
+            "creative": 0.8,
+            "analysis": 0.3
+          }
+        },
+        "max_tokens": {
+          "default": 1000,
+          "dynamic": true,
+          "adjustment_factor": 1.5
+        }
+      },
+      "usage_patterns": {
+        "batch_processing": {
+          "enabled": true,
+          "max_batch_size": 60000,
+          "optimal_chunk_size": 4000,
+          "delay_ms": 100
+        },
+        "caching": {
+          "enabled": true,
+          "ttl_seconds": 3600,
+          "max_cache_mb": 512,
+          "similarity_threshold": 0.95
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "purpose": "AI-readable documentation and schema definitions",
+  "ai_handlers": [
+    "docParser",
+    "schemaValidator",
+    "metadataManager"
+  ],
+  "dependencies": [
+    "/ai_core/models",
+    "/data/patterns"
+  ],
+  "priority": 3,
+  "access_pattern": "read",
+  "subcomponents": {
+    "schemas": {
+      "purpose": "JSON schemas for AI data structures",
+      "priority": 2,
+      "metrics_collect": false,
+      "formats": [
+        "json-schema",
+        "typescript-types",
+        "openapi"
+      ]
+    },
+    "metadata": {
+      "purpose": "AI parsing metadata and documentation",
+      "priority": 2,
+      "metrics_collect": true,
+      "formats": [
+        "json",
+        "markdown",
+        "yaml"
+      ]
+    }
+  },
+  "documentation": {
+    "auto_generate": true,
+    "update_interval": 3600,
+    "formats": {
+      "markdown": true,
+      "json": true,
+      "typescript": true
+    }
+  },
+  "validation": {
+    "schema_validation": true,
+    "link_checking": true,
+    "format_checking": true,
+    "metadata_validation": true
+  },
+  "ai_parsing": {
+    "extract_patterns": true,
+    "identify_relationships": true,
+    "generate_summaries": true,
+    "settings": {
+      "max_depth": 3,
+      "relationship_confidence": 0.8,
+      "summary_length": 500
+    }
+  },
+  "monitoring": {
+    "validation_errors": {
+      "threshold": 0,
+      "alert": true
+    },
+    "documentation_coverage": {
+      "minimum": 90,
+      "alert_threshold": 85
+    }
+  },
+  "optimization": {
+    "index_rebuild": "daily",
+    "cache_docs": true,
+    "cache_ttl": 3600,
+    "compression": true
+  }
+}

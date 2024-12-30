@@ -19,11 +19,18 @@ export interface RateLimiterRequest {
     maxAttempts: number;
 }
 
+export interface RateLimiterSettings {
+    maxBatchSize: number;
+    optimalChunkSize: number;
+    delayMs: number;
+}
+
 export class RateLimiter {
     private buckets: Map<string, TokenBucket>;
     private defaultLimit: number;
     private requestQueue: RateLimiterRequest[];
     private isProcessing: boolean;
+    private settings: RateLimiterSettings;
 
     constructor();
     
@@ -32,6 +39,10 @@ export class RateLimiter {
         tokens: number,
         requestFn: () => Promise<T>
     ): Promise<T>;
+    
+    updateSettings(settings: RateLimiterSettings): Promise<void>;
+    
+    isHealthy(): boolean;
     
     private processQueue(): Promise<void>;
     

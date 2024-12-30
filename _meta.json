@@ -1,0 +1,27 @@
+{
+  "purpose": "AI Platform root directory - Main entry point for AI operations",
+  "ai_handlers": ["systemInit", "healthCheck"],
+  "dependencies": [],
+  "priority": 1,
+  "access_pattern": "read",
+  "components": {
+    "ai_core": "Primary AI processing and decision making",
+    "api": "External and internal API endpoints",
+    "dev_tools": "Development and extension utilities",
+    "docs": "AI-readable documentation",
+    "data": "Pattern storage and metrics"
+  },
+  "health_check": {
+    "endpoint": "/api/internal/health",
+    "required_services": [
+      "anthropic_api",
+      "rate_limiter",
+      "pattern_storage"
+    ]
+  },
+  "version_control": {
+    "branch_naming": "feature/ai-{feature_name}",
+    "commit_prefix": "ai:",
+    "required_metadata": true
+  }
+}

@@ -7,18 +7,24 @@ Core Components:
 ├── LLM Service (CT 200)
 │   ├── Mistral model
 │   ├── Ollama service v0.5.4
-│   └── CPU-only mode (no GPU detected)
+│   ├── Endpoint: http://192.168.137.69:11434
+│   ├── CPU-only mode (no GPU detected)
+│   └── Memory: 8GB allocated
 │
 ├── Vector DB (CT 201)
 │   ├── Qdrant storage
-│   └── Vector database service
+│   ├── Endpoint: http://192.168.137.34:6333
+│   ├── Collections: ai_patterns, queries
+│   └── Memory: 4GB allocated
 │
 ├── Development (CT 202)
 │   ├── Python 3.10+
+│   ├── Memory: 4GB allocated
 │   └── Dev tools
 │
 ├── MCP Server (CT 203)
 │   ├── OpenAI MCP implementation
+│   ├── Memory: 2GB allocated
 │   └── Tools:
 │       ├── generate_text: GPT model text generation
 │       └── analyze_code: Code analysis service
@@ -103,6 +109,18 @@ Multi-Level Processing:
 
 ### System Monitoring
 
+#### Service Health Checks
+```bash
+# Check Ollama status
+curl -s http://192.168.137.69:11434/api/version
+
+# Check Qdrant collections
+curl -s -H "Content-Type: application/json" http://192.168.137.34:6333/collections
+
+# Monitor all containers
+bash /root/Ai-platform/maintenance/monitor_containers.sh
+```
+
 #### Failure Learning System
 ```bash
 # Check prediction status
@@ -154,7 +172,120 @@ git branch
 git log --oneline --decorate
 ```
 
+### Network Configuration
+
+#### Service Endpoints
+```bash
+# Container Network Configuration
+CT 200 (LLM): 192.168.137.69
+CT 201 (Vector DB): 192.168.137.34
+CT 202 (Development): 192.168.137.202
+CT 203 (MCP Server): 192.168.137.203
+```
+
+#### Firewall Management
+```bash
+# Check firewall status for Ollama
+pct exec 200 -- ufw status
+
+# Check firewall status for Qdrant
+pct exec 201 -- ufw status
+
+# Allow service ports
+pct exec 200 -- ufw allow 11434/tcp  # Ollama
+pct exec 201 -- ufw allow 6333/tcp   # Qdrant HTTP
+pct exec 201 -- ufw allow 6334/tcp   # Qdrant gRPC
+```
+
+#### Network Troubleshooting
+```bash
+# Check service binding
+pct exec 200 -- ss -tlnp | grep ollama
+pct exec 201 -- ss -tlnp | grep qdrant
+
+# Verify network connectivity
+ping -c 1 192.168.137.69  # Ollama
+ping -c 1 192.168.137.34  # Qdrant
+
+# Test service endpoints
+curl -v http://192.168.137.69:11434/api/version
+curl -v http://192.168.137.34:6333/collections
+```
+
+### Service Configuration
+
+#### Configuration Files
+```bash
+# Ollama Service (CT 200)
+/etc/systemd/system/ollama.service
+Environment Variables:
+├── OLLAMA_HOST=0.0.0.0:11434
+└── OLLAMA_ORIGINS=*
+
+# Qdrant Service (CT 201)
+/etc/qdrant/config.yaml
+Key Settings:
+├── storage_path: "/var/lib/qdrant/storage"
+├── service.host: "0.0.0.0"
+├── service.http_port: 6333
+└── service.grpc_port: 6334
+
+# Failure Learning System
+/etc/systemd/system/ai-failure-learning.service
+Data Locations:
+├── Log file: /var/log/ai-failure-learning.log
+├── Database: /opt/ai_platform/failure_learning.db
+└── Patterns: /opt/ai_platform/failure_patterns.json
+```
+
+#### Configuration Management
+```bash
+# Apply configuration changes
+pct exec 200 -- systemctl daemon-reload  # After service file changes
+pct exec 201 -- systemctl daemon-reload
+
+# Verify configurations
+pct exec 200 -- systemctl show ollama
+pct exec 201 -- cat /etc/qdrant/config.yaml
+
+# Backup configurations
+cp /root/Ai-platform/dev_tools/ai-failure-learning.service /root/Ai-platform/backup/
+pct exec 200 -- cp /etc/systemd/system/ollama.service /root/service-backups/
+pct exec 201 -- cp /etc/qdrant/config.yaml /root/service-backups/
+```
+
+### Service Management
+
+#### Ollama Service (CT 200)
+```bash
+# Start/Stop/Restart Ollama
+pct exec 200 -- systemctl start ollama
+pct exec 200 -- systemctl stop ollama
+pct exec 200 -- systemctl restart ollama
+
+# Check Ollama logs
+pct exec 200 -- journalctl -u ollama --no-pager -n 50
+```
+
+#### Qdrant Service (CT 201)
+```bash
+# Start/Stop/Restart Qdrant
+pct exec 201 -- systemctl start qdrant
+pct exec 201 -- systemctl stop qdrant
+pct exec 201 -- systemctl restart qdrant
+
+# Check Qdrant logs
+pct exec 201 -- journalctl -u qdrant --no-pager -n 50
+```
+
 ### Best Practices
+
+#### Service Management
+Guidelines:
+├── Monitor service endpoints regularly
+├── Check service logs for errors
+├── Verify network connectivity
+└── Monitor resource usage
 
 #### Failure Prevention
 Guidelines:

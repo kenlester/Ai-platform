@@ -1,0 +1,75 @@
+{
+  "purpose": "Development tools and testing frameworks for AI platform",
+  "ai_handlers": [
+    "toolManager",
+    "testRunner",
+    "debugHelper"
+  ],
+  "dependencies": [
+    "/ai_core/protocols",
+    "/api/internal"
+  ],
+  "priority": 2,
+  "access_pattern": "both",
+  "subcomponents": {
+    "vscode": {
+      "purpose": "VSCode extension and integration tools",
+      "priority": 1,
+      "metrics_collect": true,
+      "features": {
+        "rate_limiting": true,
+        "auto_completion": true,
+        "pattern_recognition": true,
+        "memory_optimization": true
+      },
+      "settings": {
+        "max_memory": "1GB",
+        "startup_optimization": true,
+        "cache_enabled": true
+      }
+    },
+    "testing": {
+      "purpose": "AI-focused testing frameworks",
+      "priority": 2,
+      "metrics_collect": true,
+      "frameworks": [
+        "pattern_testing",
+        "performance_testing",
+        "integration_testing"
+      ]
+    }
+  },
+  "development": {
+    "hot_reload": true,
+    "debug_mode": {
+      "enabled": false,
+      "log_level": "DEBUG",
+      "performance_tracking": true
+    }
+  },
+  "testing_config": {
+    "parallel_tests": true,
+    "max_concurrent": 4,
+    "timeout": 30000,
+    "coverage_threshold": 80
+  },
+  "monitoring": {
+    "metrics_path": "/data/metrics/dev_tools",
+    "log_level": "INFO",
+    "performance_tracking": {
+      "enabled": true,
+      "interval": 300
+    }
+  },
+  "optimization": {
+    "memory_management": {
+      "gc_interval": 3600,
+      "heap_limit": "2GB"
+    },
+    "caching": {
+      "enabled": true,
+      "max_size": "500MB",
+      "ttl": 3600
+    }
+  }
+}

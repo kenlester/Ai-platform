@@ -1,0 +1,11 @@
+{
+  "timestamp": "2024-12-30T22:28:25Z",
+  "container_id": 202,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 79,
+    "percent": 1.92
+  },
+  "cpu_percent": 0
+}

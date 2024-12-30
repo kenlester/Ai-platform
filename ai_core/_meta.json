@@ -1,0 +1,49 @@
+{
+  "purpose": "Core AI processing and decision making components",
+  "ai_handlers": [
+    "agentManager",
+    "protocolHandler",
+    "modelProcessor"
+  ],
+  "dependencies": [
+    "/api/anthropic",
+    "/data/patterns"
+  ],
+  "priority": 1,
+  "access_pattern": "both",
+  "subcomponents": {
+    "agents": {
+      "purpose": "AI agent definitions and behaviors",
+      "priority": 1,
+      "metrics_collect": true
+    },
+    "protocols": {
+      "purpose": "Communication protocols and standards",
+      "priority": 1,
+      "metrics_collect": true
+    },
+    "models": {
+      "purpose": "AI models and pattern recognition",
+      "priority": 2,
+      "metrics_collect": true
+    }
+  },
+  "performance": {
+    "max_concurrent_agents": 5,
+    "response_time_threshold": 200,
+    "memory_limit": "2GB"
+  },
+  "error_handling": {
+    "retry_attempts": 3,
+    "backoff_strategy": "exponential",
+    "failure_threshold": 5
+  },
+  "monitoring": {
+    "metrics_path": "/data/metrics/ai_core",
+    "log_level": "INFO",
+    "alert_threshold": {
+      "error_rate": 0.05,
+      "latency_ms": 1000
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Communication Protocol Schema",
+  "description": "Standardized protocol for AI-to-AI communication with built-in optimization",
+  "type": "object",
+  "required": ["protocol_version", "message_id", "sender", "intent", "content"],
+  "properties": {
+    "protocol_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the protocol"
+    },
+    "message_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$",
+      "description": "Unique message identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    },
+    "sender": {
+      "type": "object",
+      "required": ["id", "type", "capabilities"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the sender"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["llm", "agent", "service", "human"],
+          "description": "Type of sender"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "pattern_recognition",
+              "code_analysis",
+              "natural_language",
+              "task_execution",
+              "learning",
+              "optimization"
+            ]
+          }
+        },
+        "context": {
+          "type": "object",
+          "description": "Additional sender context"
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "required": ["type", "action"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["query", "response", "notification", "error", "pattern", "optimization"],
+          "description": "Primary intent type"
+        },
+        "action": {
+          "type": "string",
+          "description": "Specific action to perform"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3,
+          "description": "Processing priority"
+        },
+        "requires_response": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": ["format", "data"],
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["text", "json", "code", "binary", "pattern"],
+          "description": "Content format"
+        },
+        "data": {
+          "type": ["object", "array", "string"],
+          "description": "Actual payload"
+        },
+        "encoding": {
+          "type": "string",
+          "enum": ["none", "base64", "compressed"],
+          "default": "none"
+        },
+        "schema": {
+          "type": "string",
+          "description": "URI of the schema for the data"
+        }
+      }
+    },
+    "optimization": {
+      "type": "object",
+      "properties": {
+        "pattern_id": {
+          "type": "string",
+          "description": "ID of recognized pattern"
+        },
+        "compression": {
+          "type": "boolean",
+          "default": false
+        },
+        "caching": {
+          "type": "object",
+          "properties": {
+            "ttl": {
+              "type": "integer",
+              "description": "Cache time-to-live in seconds"
+            },
+            "strategy": {
+              "type": "string",
+              "enum": ["memory", "disk", "distributed"]
+            }
+          }
+        },
+        "batch_id": {
+          "type": "string",
+          "description": "ID for batch processing"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "tokens": {
+          "type": "object",
+          "properties": {
+            "input": {"type": "integer"},
+            "output": {"type": "integer"},
+            "saved": {"type": "integer"}
+          }
+        },
+        "latency": {
+          "type": "number",
+          "description": "Processing time in milliseconds"
+        },
+        "pattern_matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "confidence": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "description": "SHA-256 hash of the content"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Digital signature if required"
+        },
+        "encryption": {
+          "type": "object",
+          "properties": {
+            "algorithm": {"type": "string"},
+            "key_id": {"type": "string"}
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "protocol_version": "1.0.0",
+      "message_id": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4",
+      "timestamp": "2024-01-25T12:00:00Z",
+      "sender": {
+        "id": "agent_123",
+        "type": "agent",
+        "capabilities": ["pattern_recognition", "code_analysis"]
+      },
+      "intent": {
+        "type": "query",
+        "action": "analyze_code",
+        "priority": 2
+      },
+      "content": {
+        "format": "code",
+        "data": "def example(): pass",
+        "schema": "code_analysis_v1"
+      },
+      "optimization": {
+        "pattern_id": "code_review_py",
+        "compression": false,
+        "caching": {
+          "ttl": 3600,
+          "strategy": "memory"
+        }
+      },
+      "metrics": {
+        "tokens": {
+          "input": 10,
+          "output": 0,
+          "saved": 5
+        }
+      }
+    }
+  ]
+}

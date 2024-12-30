@@ -12,7 +12,7 @@ User=root
 Group=root
 WorkingDirectory=/root/Ai-platform/dev_tools
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/bin/python3 failure_learning_system.py
+ExecStart=/root/Ai-platform/dev_tools/venv/bin/python failure_learning_system.py
 Restart=always
 RestartSec=10
 StandardOutput=append:/var/log/ai-failure-learning.log

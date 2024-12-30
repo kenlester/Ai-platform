@@ -1,0 +1,49 @@
+{
+  "timestamp": "2024-12-30T22:28:25Z",
+  "containers": {
+    "200": {
+      "timestamp": "2024-12-30T22:28:25Z",
+      "container_id": 200,
+      "status": "running",
+      "memory": {
+        "total_mb": 8192,
+        "used_mb": 41,
+        "percent": 0.5
+      },
+      "cpu_percent": 0
+    },
+    "201": {
+      "timestamp": "2024-12-30T22:28:25Z",
+      "container_id": 201,
+      "status": "running",
+      "memory": {
+        "total_mb": 4096,
+        "used_mb": 61,
+        "percent": 1.48
+      },
+      "cpu_percent": 15.3
+    },
+    "202": {
+      "timestamp": "2024-12-30T22:28:25Z",
+      "container_id": 202,
+      "status": "running",
+      "memory": {
+        "total_mb": 4096,
+        "used_mb": 79,
+        "percent": 1.92
+      },
+      "cpu_percent": 0
+    },
+    "203": {
+      "timestamp": "2024-12-30T22:28:25Z",
+      "container_id": 203,
+      "status": "running",
+      "memory": {
+        "total_mb": 2048,
+        "used_mb": 43,
+        "percent": 2.09
+      },
+      "cpu_percent": 0
+    }
+  }
+}

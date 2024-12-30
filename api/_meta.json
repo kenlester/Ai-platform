@@ -1,0 +1,63 @@
+{
+  "purpose": "API endpoints and handlers for external and internal services",
+  "ai_handlers": [
+    "apiRouter",
+    "rateController",
+    "responseFormatter"
+  ],
+  "dependencies": [
+    "/ai_core/protocols",
+    "/data/metrics"
+  ],
+  "priority": 1,
+  "access_pattern": "both",
+  "subcomponents": {
+    "anthropic": {
+      "purpose": "Anthropic API integration and optimization",
+      "priority": 1,
+      "metrics_collect": true,
+      "rate_limits": {
+        "tokens_per_minute": 80000,
+        "max_batch_size": 60000,
+        "cache_ttl": 300
+      }
+    },
+    "internal": {
+      "purpose": "Internal API endpoints for system management",
+      "priority": 2,
+      "metrics_collect": true,
+      "endpoints": [
+        "/health",
+        "/metrics",
+        "/config"
+      ]
+    }
+  },
+  "rate_limiting": {
+    "enabled": true,
+    "strategy": "token_bucket",
+    "queue_size": 1000
+  },
+  "caching": {
+    "strategy": "adaptive",
+    "max_size": "1GB",
+    "ttl_range": {
+      "min": 60,
+      "max": 3600
+    }
+  },
+  "monitoring": {
+    "metrics_path": "/data/metrics/api",
+    "log_level": "INFO",
+    "alert_threshold": {
+      "error_rate": 0.01,
+      "latency_ms": 500,
+      "queue_size": 100
+    }
+  },
+  "error_handling": {
+    "retry_enabled": true,
+    "max_retries": 3,
+    "backoff_ms": 1000
+  }
+}
