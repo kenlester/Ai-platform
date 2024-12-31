@@ -9,6 +9,8 @@ node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+dist/
+out/
 
 # Python
 __pycache__/
@@ -28,9 +30,17 @@ venv/
 *.swo
 .DS_Store
 
-# Logs
+# Logs and Data
 logs/
 *.log
+data/
+metrics/
+backups/
+
+# Runtime and temporary directories
+current/
+deprecated/
+archive/
 
 # Local development
 .local/
@@ -50,3 +60,11 @@ Thumbs.db
 *.tmp
 *.temp
 *.bak
+dashboard.log
+recovery_test_execution.log
+openai_mcp.log
+erros.txt
+
+# Build output
+dist/
+out/
