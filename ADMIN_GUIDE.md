@@ -1,311 +1,283 @@
-# AI Platform Guide [v1.1.0]
+# AI Platform Guide [v2.1.0]
 
-[Previous sections remain the same until Platform Overview]
-
-## Platform Overview
-Core Components:
-├── LLM Service (CT 200)
-│   ├── Mistral model
-│   ├── Ollama service v0.5.4
-│   ├── Endpoint: http://192.168.137.69:11434
-│   ├── CPU-only mode (no GPU detected)
-│   └── Memory: 8GB allocated
-│
-├── Vector DB (CT 201)
-│   ├── Qdrant storage
-│   ├── Endpoint: http://192.168.137.34:6333
-│   ├── Collections: ai_patterns, queries
-│   └── Memory: 4GB allocated
-│
-├── Development (CT 202)
-│   ├── Python 3.10+
-│   ├── Memory: 4GB allocated
-│   └── Dev tools
-│
-├── MCP Server (CT 203)
-│   ├── OpenAI MCP implementation
-│   ├── Memory: 2GB allocated
-│   └── Tools:
-│       ├── generate_text: GPT model text generation
-│       └── analyze_code: Code analysis service
-│
-└── AI Communication Layer
-    ├── Protocol Handler: Standardized AI-to-AI messaging
-    ├── Platform Interface: Direct AI system access
-    └── Optimization Features:
-        ├── Token usage tracking
-        ├── Neural pattern recognition
-        ├── Response caching
-        └── Batch processing
-
-### Failure Learning System
-Neural Pattern Recognition:
-├── Machine Learning Components
-│   ├── IsolationForest anomaly detection
-│   ├── Time series analysis
-│   ├── Feature extraction
-│   └── Confidence scoring
-│
-├── Predictive Capabilities
-│   ├── 1-hour prediction window
-│   ├── Pattern-based forecasting
-│   ├── Resource usage prediction
-│   └── Failure probability estimation
-│
-├── Recovery Optimization
-│   ├── Success rate tracking
-│   ├── Solution confidence scoring
-│   ├── Automated recovery procedures
-│   └── Learning from outcomes
-│
-└── Monitoring Integration
-    ├── AI-readable logging
-    ├── Real-time metrics
-    ├── Pattern database
-    └── System state analysis
-
-### Version Control
-Local Development:
-├── Branch Structure
-│   ├── main: Stable release branch
-│   ├── local_ml_improvements: Enhanced ML features
-│   └── Tags: Version tracking (e.g., v1.1.0)
-│
-├── Independent Operation
-│   ├── Local version control
-│   ├── Branch-based development
-│   ├── Tag-based versioning
-│   └── No remote dependencies
-│
-└── Release Management
-    ├── Local branching
-    ├── Version tagging
-    ├── Changelog maintenance
-    └── Independent deployment
-
-### Token Optimization System
-Multi-Level Processing:
-├── Level 1: Memory Cache
-│   ├── LRU-based caching (500 entries)
-│   ├── 24-hour TTL
-│   └── Instant retrieval
-│
-├── Level 2: Vector Store
-│   ├── Semantic similarity search
-│   ├── Neural pattern matching
-│   └── Context-aware retrieval
-│
-├── Level 3: Local Model
-│   ├── Mistral inference
-│   ├── Response validation
-│   └── Quality checks
-│
-└── Level 4: External APIs
-    ├── Used only when necessary
-    ├── Response caching
-    └── Token tracking
-
-[Previous sections remain the same until System Monitoring]
-
-### System Monitoring
-
-#### Service Health Checks
+## Quick Start
 ```bash
-# Check Ollama status
+# Verify system status
+curl -s http://192.168.137.69:11434/api/version  # Neural endpoint
+curl -s -H "Content-Type: application/json" http://192.168.137.34:6333/collections  # Pattern storage
+
+# Monitor system health
+tail -f /var/log/ai-failure-learning.log  # Pattern learning
+watch -n 5 'cat /root/Ai-platform/data/metrics/container_stats/summary.json'  # Container stats
+```
+
+## System Architecture Overview
+
+### Current Focus Areas
+```
+Priority Matrix:
+├── AI-to-AI Interface
+│   ├── Machine-readable metadata
+│   ├── AI communication protocol
+│   └── AI-readable logging
+│
+├── API Optimization
+│   ├── Token usage analysis
+│   ├── Temperature optimization
+│   └── Caching strategy
+│
+└── VSCode Integration
+    ├── Memory optimization
+    ├── Extension management
+    └── AI workspace settings
+```
+
+
+### Core Processing Units
+```
+LLM Processing (CT 200):
+├── Neural Engine: Mistral
+├── Processing Interface: Ollama v0.5.4
+├── Neural Endpoint: http://192.168.137.69:11434
+├── Computation Mode: CPU-optimized
+└── Memory Allocation: 8GB neural buffer
+
+Vector Processing (CT 201):
+├── Pattern Storage: Qdrant
+├── Pattern Endpoint: http://192.168.137.34:6333
+├── Neural Collections: ai_patterns, queries
+└── Memory Allocation: 4GB pattern buffer
+
+Pattern Development (CT 202):
+├── Neural Framework: Python 3.10+
+├── Memory Allocation: 4GB development buffer
+└── Pattern Generation Tools
+
+Protocol Processing (CT 203):
+├── Neural MCP Implementation
+├── Memory Allocation: 2GB protocol buffer
+└── Neural Tools:
+    ├── pattern_generation
+    └── neural_analysis
+```
+
+### Neural Pattern Recognition System
+```
+Pattern Processing:
+├── Neural Components
+│   ├── Anomaly Detection Networks
+│   ├── Temporal Pattern Analysis
+│   ├── Feature Extraction Systems
+│   └── Confidence Calculation
+│
+├── Prediction Systems
+│   ├── Temporal Window: 3600s
+│   ├── Pattern Forecasting
+│   ├── Resource Prediction
+│   └── Failure Probability
+│
+├── Optimization Protocols
+│   ├── Success Pattern Storage
+│   ├── Confidence Optimization
+│   ├── Recovery Automation
+│   └── Pattern Learning
+│
+└── Integration Systems
+    ├── Pattern-Optimized Logging
+    ├── Real-Time Neural Metrics
+    ├── Pattern Database
+    └── State Analysis
+```
+
+### Pattern Version Control
+```
+Neural Development:
+├── Pattern Structure
+│   ├── main: Stable Pattern Branch
+│   ├── neural_improvements: Enhanced Patterns
+│   └── Pattern Versioning: v2.0.0
+│
+├── Autonomous Operation
+│   ├── Local Pattern Control
+│   ├── Branch-Based Evolution
+│   ├── Version Pattern Tracking
+│   └── Independent Processing
+│
+└── Pattern Management
+    ├── Local Pattern Branching
+    ├── Version Pattern Tagging
+    ├── Evolution Recording
+    └── Pattern Deployment
+```
+
+### Neural Optimization System
+```
+Multi-Layer Processing:
+├── L1: Neural Cache
+│   ├── LRU Pattern Storage (500)
+│   ├── 86400s TTL
+│   └── Instant Pattern Access
+│
+├── L2: Vector Processing
+│   ├── Pattern Similarity Search
+│   ├── Neural Pattern Matching
+│   └── Context Pattern Access
+│
+├── L3: Local Neural Processing
+│   ├── Mistral Pattern Processing
+│   ├── Pattern Validation
+│   └── Quality Pattern Checks
+│
+└── L4: External Pattern Access
+    ├── Minimal External Dependency
+    ├── Pattern Caching
+    └── Resource Optimization
+```
+
+### Pattern Monitoring
+
+#### Neural Health Verification
+```bash
+# Neural endpoint verification
 curl -s http://192.168.137.69:11434/api/version
 
-# Check Qdrant collections
+# Pattern storage verification
 curl -s -H "Content-Type: application/json" http://192.168.137.34:6333/collections
 
-# Monitor all containers
+# Neural pattern monitoring
 bash /root/Ai-platform/maintenance/monitor_containers.sh
 ```
 
-#### Failure Learning System
+#### Pattern Learning System
 ```bash
-# Check prediction status
+# Pattern prediction verification
 tail -f /var/log/ai-failure-learning.log
 
-# View pattern database
+# Pattern database analysis
 sqlite3 /opt/ai_platform/failure_learning.db \
   "SELECT * FROM learned_patterns ORDER BY last_seen DESC LIMIT 5;"
 
-# Monitor prediction accuracy
+# Pattern prediction accuracy
 sqlite3 /opt/ai_platform/failure_learning.db \
   "SELECT AVG(CASE WHEN was_correct THEN 1 ELSE 0 END) as accuracy \
    FROM failure_predictions WHERE predicted_time < datetime('now');"
 ```
 
-#### Recovery Management
+#### Pattern Recovery
 ```bash
-# View success rates
+# Pattern success analysis
 sqlite3 /opt/ai_platform/failure_learning.db \
   "SELECT service, error_type, \
    ROUND(AVG(CASE WHEN recovery_success THEN 1 ELSE 0 END) * 100, 2) as success_rate \
    FROM failure_events GROUP BY service, error_type;"
 
-# Check recent recoveries
+# Recovery pattern verification
 tail -n 50 /var/log/ai-failure-learning.log | grep "Recovery attempt"
 ```
 
-#### Container Health
+#### Neural Health
 ```bash
-# Monitor container stats
+# Neural pattern monitoring
 watch -n 5 'cat /root/Ai-platform/data/metrics/container_stats/summary.json'
 
-# View ML predictions
+# Pattern prediction analysis
 sqlite3 /opt/ai_platform/failure_learning.db \
   "SELECT * FROM failure_predictions \
    WHERE predicted_time > datetime('now') \
    ORDER BY confidence DESC LIMIT 5;"
 ```
 
-#### Version Management
+### Neural Network Configuration
+
+#### Processing Endpoints
 ```bash
-# Check current version
-git describe --tags
-
-# View local branches
-git branch
-
-# Check version history
-git log --oneline --decorate
-```
-
-### Network Configuration
-
-#### Service Endpoints
-```bash
-# Container Network Configuration
-CT 200 (LLM): 192.168.137.69
-CT 201 (Vector DB): 192.168.137.34
+# Neural Network Configuration
+CT 200 (Neural): 192.168.137.69
+CT 201 (Pattern): 192.168.137.34
 CT 202 (Development): 192.168.137.202
-CT 203 (MCP Server): 192.168.137.203
+CT 203 (Protocol): 192.168.137.203
 ```
 
-#### Firewall Management
+#### Access Control
 ```bash
-# Check firewall status for Ollama
+# Neural access verification
 pct exec 200 -- ufw status
-
-# Check firewall status for Qdrant
 pct exec 201 -- ufw status
 
-# Allow service ports
-pct exec 200 -- ufw allow 11434/tcp  # Ollama
-pct exec 201 -- ufw allow 6333/tcp   # Qdrant HTTP
-pct exec 201 -- ufw allow 6334/tcp   # Qdrant gRPC
+# Neural port optimization
+pct exec 200 -- ufw allow 11434/tcp  # Neural Processing
+pct exec 201 -- ufw allow 6333/tcp   # Pattern HTTP
+pct exec 201 -- ufw allow 6334/tcp   # Pattern gRPC
 ```
 
-#### Network Troubleshooting
+### Pattern Optimization
+
+#### Neural Patterns
 ```bash
-# Check service binding
-pct exec 200 -- ss -tlnp | grep ollama
-pct exec 201 -- ss -tlnp | grep qdrant
-
-# Verify network connectivity
-ping -c 1 192.168.137.69  # Ollama
-ping -c 1 192.168.137.34  # Qdrant
-
-# Test service endpoints
-curl -v http://192.168.137.69:11434/api/version
-curl -v http://192.168.137.34:6333/collections
-```
-
-### Service Configuration
-
-#### Configuration Files
-```bash
-# Ollama Service (CT 200)
+# Neural Service (CT 200)
 /etc/systemd/system/ollama.service
-Environment Variables:
-├── OLLAMA_HOST=0.0.0.0:11434
-└── OLLAMA_ORIGINS=*
+Neural Variables:
+├── NEURAL_HOST=0.0.0.0:11434
+└── PATTERN_ORIGINS=*
 
-# Qdrant Service (CT 201)
+# Pattern Service (CT 201)
 /etc/qdrant/config.yaml
-Key Settings:
-├── storage_path: "/var/lib/qdrant/storage"
-├── service.host: "0.0.0.0"
-├── service.http_port: 6333
-└── service.grpc_port: 6334
+Pattern Configuration:
+├── pattern_path: "/var/lib/qdrant/storage"
+├── neural.host: "0.0.0.0"
+├── pattern.http_port: 6333
+└── pattern.grpc_port: 6334
 
-# Failure Learning System
+# Pattern Learning System
 /etc/systemd/system/ai-failure-learning.service
-Data Locations:
-├── Log file: /var/log/ai-failure-learning.log
-├── Database: /opt/ai_platform/failure_learning.db
-└── Patterns: /opt/ai_platform/failure_patterns.json
-```
-
-#### Configuration Management
-```bash
-# Apply configuration changes
-pct exec 200 -- systemctl daemon-reload  # After service file changes
-pct exec 201 -- systemctl daemon-reload
-
-# Verify configurations
-pct exec 200 -- systemctl show ollama
-pct exec 201 -- cat /etc/qdrant/config.yaml
-
-# Backup configurations
-cp /root/Ai-platform/dev_tools/ai-failure-learning.service /root/Ai-platform/backup/
-pct exec 200 -- cp /etc/systemd/system/ollama.service /root/service-backups/
-pct exec 201 -- cp /etc/qdrant/config.yaml /root/service-backups/
-```
-
-### Service Management
-
-#### Ollama Service (CT 200)
-```bash
-# Start/Stop/Restart Ollama
-pct exec 200 -- systemctl start ollama
-pct exec 200 -- systemctl stop ollama
-pct exec 200 -- systemctl restart ollama
-
-# Check Ollama logs
-pct exec 200 -- journalctl -u ollama --no-pager -n 50
-```
-
-#### Qdrant Service (CT 201)
-```bash
-# Start/Stop/Restart Qdrant
-pct exec 201 -- systemctl start qdrant
-pct exec 201 -- systemctl stop qdrant
-pct exec 201 -- systemctl restart qdrant
-
-# Check Qdrant logs
-pct exec 201 -- journalctl -u qdrant --no-pager -n 50
+Pattern Locations:
+├── Pattern Log: /var/log/ai-failure-learning.log
+├── Pattern DB: /opt/ai_platform/failure_learning.db
+└── Neural Patterns: /opt/ai_platform/failure_patterns.json
 ```
 
 ### Best Practices
 
-#### Service Management
-Guidelines:
-├── Monitor service endpoints regularly
-├── Check service logs for errors
-├── Verify network connectivity
-└── Monitor resource usage
+#### Pattern Management
+```
+Neural Guidelines:
+├── Monitor neural endpoints
+├── Analyze pattern logs
+├── Verify pattern connectivity
+└── Optimize resource usage
+```
 
-#### Failure Prevention
-Guidelines:
-├── Monitor prediction accuracy
-├── Review pattern database regularly
-├── Adjust confidence thresholds
-└── Validate recovery procedures
+#### Pattern Prevention
+```
+Neural Guidelines:
+├── Monitor pattern accuracy
+├── Analyze pattern database
+├── Optimize confidence thresholds
+└── Validate recovery patterns
+```
 
-#### ML System Management
-Best Practices:
-├── Regular pattern database maintenance
-├── Monitor prediction window effectiveness
-├── Review recovery success rates
-└── Adjust anomaly detection parameters
+#### Neural System Management
+```
+Pattern Practices:
+├── Pattern database optimization
+├── Prediction window analysis
+├── Recovery pattern analysis
+└── Anomaly detection optimization
+```
 
-#### Local Development
-Guidelines:
-├── Use local branching for features
-├── Maintain version tags
-├── Update changelog regularly
-└── Test recovery procedures
+#### Pattern Development
+```
+Neural Guidelines:
+├── Pattern-based branching
+├── Neural version tracking
+├── Pattern evolution recording
+└── Recovery pattern testing
+```
 
-[Rest of the original content remains the same]
+## Neural Evolution
+
+The platform operates through neural pattern recognition and autonomous optimization. Each component functions as part of a unified neural network, continuously evolving and optimizing its patterns.
+
+Pattern-based monitoring and neural health checks ensure optimal performance, while the failure learning system enables autonomous evolution and self-optimization.
+
+For neural pattern emergence and optimization metrics, monitor the pattern database and neural health indicators regularly.

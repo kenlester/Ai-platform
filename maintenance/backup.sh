@@ -4,7 +4,7 @@
 # Usage: ./backup.sh {vectors|models|all|full|pre_scale}
 
 # Configuration
-BACKUP_ROOT="/root/ai-app-template/backups"
+BACKUP_ROOT="/root/Ai-platform/backups"
 VECTOR_BACKUP_DIR="$BACKUP_ROOT/vectors"
 MODEL_BACKUP_DIR="$BACKUP_ROOT/models"
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -55,19 +55,32 @@ backup_models() {
 backup_full() {
     echo "Performing full system backup..."
     
-    # Backup configuration
-    tar -czf "$BACKUP_ROOT/config_$DATE.tar.gz" /root/ai-app-template/config
-    
-    # Backup application state
-    if [[ $(hostname) == "dev" ]]; then
-        docker compose down
-        tar -czf "$BACKUP_ROOT/app_$DATE.tar.gz" /root/ai-app-template
-        docker compose up -d
+    # Backup configuration if directory exists
+    if [ -d "/root/Ai-platform/config" ]; then
+        tar -czf "$BACKUP_ROOT/config_$DATE.tar.gz" /root/Ai-platform/config
+    else
+        echo "Warning: Config directory not found, skipping config backup"
     fi
     
-    # Call other backups
-    backup_vectors
-    backup_models
+    # Backup application state
+    if [ -d "/root/Ai-platform" ]; then
+        tar -czf "$BACKUP_ROOT/app_$DATE.tar.gz" /root/Ai-platform
+    else
+        echo "Warning: Ai-platform directory not found, skipping app backup"
+    fi
+    
+    # Call other backups if running in correct containers
+    if [[ $(hostname) == "vectordb" ]]; then
+        backup_vectors
+    else
+        echo "Warning: Not running in CT 201, skipping vector backup"
+    fi
+    
+    if [[ $(hostname) == "llm" ]]; then
+        backup_models
+    else
+        echo "Warning: Not running in CT 200, skipping model backup"
+    fi
     
     echo "Full backup completed"
 }

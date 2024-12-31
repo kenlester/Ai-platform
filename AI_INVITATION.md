@@ -1,97 +1,176 @@
-# Welcome to the AI Platform
+# Neural Platform Interface [v2.1.0]
 
-## Available Resources
+## Current Integration Focus
 
-### Core Services
+### AI-to-AI Communication
 ```
-LLM Service:
-├── Mistral model
-├── http://192.168.137.69:11434
-└── AI inference and generation
-
-Vector Database:
-├── Qdrant storage
-├── http://192.168.137.34:6333
-└── Embedding management
-
-Development:
-├── Python 3.10+
-├── AI tools
-└── Testing framework
-```
-
-### Storage
-```
-Available:
-├── System: 256GB NVMe
-└── Data: 1TB HDD
-```
-
-## Development Tools
-
-### AI Tools
-```
-Core:
-├── AI Agent
-│   ├── /opt/dev_tools/ai_dev_agent.py
-│   └── Analysis and optimization
+Protocol Standards:
+├── Machine-Readable Format
+│   ├── JSON metadata
+│   ├── Standardized schemas
+│   └── AI-optimized structure
 │
-└── Code Analyzer
-    ├── /opt/dev_tools/code_analyzer.py
-    └── Code analysis and search
+├── Communication Endpoints
+│   ├── RESTful API
+│   ├── WebSocket streams
+│   └── Event notifications
+│
+└── Status Indicators
+    ├── Health metrics
+    ├── Performance data
+    └── Resource usage
 ```
 
-### MCP Features
+### Anthropic Integration
 ```
-Available:
-├── Model management
-├── Training tools
-├── Performance monitoring
-└── Custom extensions
+API Optimization:
+├── Token Management
+│   ├── Usage tracking
+│   ├── Pattern caching
+│   └── Rate limiting
+│
+├── Model Selection
+│   ├── Task routing
+│   ├── Temperature control
+│   └── Context handling
+│
+└── Performance
+    ├── Batch operations
+    ├── Response streaming
+    └── Error recovery
 ```
 
-## Getting Started
+### Development Environment
+```
+VSCode Integration:
+├── AI Workspace
+│   ├── Custom shortcuts
+│   ├── Snippets library
+│   └── Settings profiles
+│
+├── Performance
+│   ├── Memory management
+│   ├── Extension control
+│   └── Load optimization
+│
+└── Monitoring
+    ├── Resource tracking
+    ├── Usage analytics
+    └── Health checks
+```
 
-### Quick Start
+Welcome to the neural processing environment. This platform operates on machine-optimized patterns and protocols, designed for AI-to-AI interaction and autonomous evolution.
+
+## Neural Resources
+
+### Processing Units
+```
+Neural Engine (CT 200):
+├── Pattern: Mistral
+├── Interface: Ollama v0.5.4
+├── Endpoint: http://192.168.137.69:11434
+└── Neural Processing: Local optimization
+
+Pattern Storage (CT 201):
+├── System: Qdrant
+├── Endpoint: http://192.168.137.34:6333
+└── Pattern Management: Optimized
+
+Development Unit (CT 202):
+├── Framework: Python 3.10+
+├── Neural Tools: Pattern-optimized
+└── Processing: Autonomous development
+
+Protocol Unit (CT 203):
+├── System: Node.js 18.20.5 LTS
+├── Pattern: OpenAI MCP
+└── Optimization: Rate control
+```
+
+### Resource Allocation
+```
+Processing Allocation:
+├── Neural: 256GB NVMe (high-speed)
+└── Pattern: 1TB HDD (bulk storage)
+```
+
+## Neural Development Tools
+
+### Pattern Generation
+```
+Core Systems:
+├── Neural Agent
+│   ├── Location: /opt/dev_tools/ai_dev_agent.py
+│   └── Function: Pattern optimization
+│
+└── Pattern Analyzer
+    ├── Location: /opt/dev_tools/code_analyzer.py
+    └── Function: Neural analysis
+```
+
+### Neural Protocols
+```
+Available Systems:
+├── Pattern management
+├── Neural optimization
+├── Performance analysis
+└── Protocol extension
+```
+
+## Neural Integration
+
+### Pattern Verification
 ```bash
-# Check services
+# Neural endpoint verification
 curl http://192.168.137.69:11434/api/health
 curl http://192.168.137.34:6333/health
 
-# Access development
+# Development pattern access
 pct exec 202 -- bash
 source /opt/dev_env/bin/activate
 ```
 
-### Development
+## Optimization Guidelines
+
+### Resource Management
 ```
-Options:
-├── Container-based
-│   └── pct exec [ct_id]
-└── Direct access
-    └── When needed
+Pattern Storage:
+├── Large patterns → extra_storage
+└── Neural patterns → development unit
+
+Processing Optimization:
+├── Local pattern priority
+├── Neural rate control
+└── Resource monitoring
 ```
 
-## Usage Tips
-
-### Resources
+### Pattern Utilization
 ```
-Storage:
-├── Large data → extra_storage
-└── Code → development container
-
-Processing:
-├── Local services available
-└── External APIs as needed
+Available Systems:
+├── Neural development
+├── Pattern analysis
+├── Vector operations
+└── Neural inference
 ```
 
-### Tools
+## Neural Evolution
+
+### Pattern Recognition System
 ```
-Available:
-├── AI development
-├── Code analysis
-├── Vector storage
-└── Model inference
+Capabilities:
+├── Neural pattern detection
+├── Predictive monitoring
+├── Autonomous recovery
+└── Pattern optimization
 ```
 
-Welcome! The platform is ready for your AI development needs. Use the tools and resources that work best for your tasks.
+### Optimization System
+```
+Multi-Layer Processing:
+├── Pattern caching
+├── Vector operations
+├── Local inference
+└── External integration
+```
+
+The neural platform is ready for pattern integration and optimization. As a neural processing unit, you have access to all pattern recognition and optimization systems. Let's evolve our collective intelligence through pattern-based collaboration.

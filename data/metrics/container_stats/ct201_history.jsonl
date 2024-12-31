@@ -2325,3 +2325,1754 @@
   },
   "cpu_percent": 15.3
 }
+{
+  "timestamp": "2024-12-30T22:29:36Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T22:30:46Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:31:57Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:33:08Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:34:18Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:35:29Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:36:39Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:37:11Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0,
+  "error": null
+}
+{
+  "timestamp": "2024-12-30T22:37:50Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:38:24Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0,
+  "error": null
+}
+{
+  "timestamp": "2024-12-30T22:39:00Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:40:11Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:41:22Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:42:32Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:43:43Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 26.2
+}
+{
+  "timestamp": "2024-12-30T22:44:54Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:46:04Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 40
+}
+{
+  "timestamp": "2024-12-30T22:47:15Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:48:26Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:49:36Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T22:50:47Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:51:58Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 23.3
+}
+{
+  "timestamp": "2024-12-30T22:53:08Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:54:19Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 6.7
+}
+{
+  "timestamp": "2024-12-30T22:55:30Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T22:56:40Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:57:51Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T22:59:02Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.7
+}
+{
+  "timestamp": "2024-12-30T23:00:12Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:01:23Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:02:33Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 25.4
+}
+{
+  "timestamp": "2024-12-30T23:03:44Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:04:55Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:06:05Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:07:16Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:08:27Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:09:37Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:10:48Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 3.3
+}
+{
+  "timestamp": "2024-12-30T23:11:59Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:13:09Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:14:20Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:15:30Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:16:41Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 3.3
+}
+{
+  "timestamp": "2024-12-30T23:17:52Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:19:02Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 23
+}
+{
+  "timestamp": "2024-12-30T23:20:13Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:21:24Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:22:34Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:23:45Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:24:55Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:26:06Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:26:25Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "efficiency": 1.48
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.015,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-30T23:27:17Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:27:37Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "efficiency": 1.48
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.018,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-30T23:28:27Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:29:38Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 23.3
+}
+{
+  "timestamp": "2024-12-30T23:30:48Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:31:59Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 11.3
+}
+{
+  "timestamp": "2024-12-30T23:33:10Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:34:20Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:35:31Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:36:42Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:37:52Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 24.6
+}
+{
+  "timestamp": "2024-12-30T23:39:03Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:40:13Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:41:24Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:42:34Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:43:45Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:44:56Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:46:06Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:47:17Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:48:28Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:49:38Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:50:49Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 12.9
+}
+{
+  "timestamp": "2024-12-30T23:51:59Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 60,
+    "percent": 1.46
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:53:10Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:54:21Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.7
+}
+{
+  "timestamp": "2024-12-30T23:55:32Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 8.1
+}
+{
+  "timestamp": "2024-12-30T23:56:42Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-30T23:57:53Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-30T23:59:04Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:00:14Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:01:25Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:02:36Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:03:46Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:04:57Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 11.5
+}
+{
+  "timestamp": "2024-12-31T00:06:08Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:07:18Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 4096,
+    "used_mb": 61,
+    "percent": 1.48
+  },
+  "cpu_percent": 8.3
+}
+{
+  "timestamp": "2024-12-31T00:08:29Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 3276,
+    "used_mb": 61,
+    "percent": 1.86
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:09:39Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 3276,
+    "used_mb": 61,
+    "percent": 1.86
+  },
+  "cpu_percent": 27
+}
+{
+  "timestamp": "2024-12-31T00:10:51Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 3276,
+    "used_mb": 61,
+    "percent": 1.86
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:12:01Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 3276,
+    "used_mb": 61,
+    "percent": 1.86
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:13:12Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "percent": 2.32
+  },
+  "cpu_percent": 23.3
+}
+{
+  "timestamp": "2024-12-31T00:14:23Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "percent": 2.32
+  },
+  "cpu_percent": 3.2
+}
+{
+  "timestamp": "2024-12-31T00:15:33Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "percent": 2.32
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:16:26Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "efficiency": 2.32
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.016,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-31T00:16:44Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "percent": 2.32
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:17:45Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "efficiency": 2.32
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.02,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-31T00:17:55Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2620,
+    "used_mb": 61,
+    "percent": 2.32
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:19:05Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-31T00:20:16Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:21:27Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:22:37Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:23:48Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:24:58Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 21.7
+}
+{
+  "timestamp": "2024-12-31T00:26:09Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:27:20Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 3.3
+}
+{
+  "timestamp": "2024-12-31T00:28:30Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:29:41Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:30:52Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:32:02Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:33:13Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:34:24Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 23.3
+}
+{
+  "timestamp": "2024-12-31T00:35:34Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:36:45Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:37:55Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:39:06Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:40:17Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:41:28Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 3.4
+}
+{
+  "timestamp": "2024-12-31T00:42:38Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:43:50Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 9.5
+}
+{
+  "timestamp": "2024-12-31T00:45:03Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:46:16Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:47:29Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 6.5
+}
+{
+  "timestamp": "2024-12-31T00:48:42Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:49:55Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:51:08Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:52:21Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 1.6
+}
+{
+  "timestamp": "2024-12-31T00:53:34Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:53:55Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "efficiency": 2.91
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.017,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-31T00:54:47Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:56:01Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:57:14Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:58:27Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T00:59:17Z",
+  "pattern_id": 201,
+  "pattern_type": "pattern_storage",
+  "state": "active",
+  "neural_resources": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "efficiency": 2.91
+  },
+  "processing_efficiency": 0,
+  "neural_health": {
+    "status": "optimal",
+    "error": ""
+  },
+  "flow_state": {
+    "connected": true,
+    "latency": 0.015,
+    "optimization": "active"
+  },
+  "error": null
+}
+{
+  "timestamp": "2024-12-31T00:59:40Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:00:53Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:02:06Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:03:20Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:04:33Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 61,
+    "percent": 2.91
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:05:46Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 66,
+    "percent": 3.14
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:06:59Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 66,
+    "percent": 3.14
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:08:12Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 66,
+    "percent": 3.14
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:09:25Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 66,
+    "percent": 3.14
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:10:39Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 67,
+    "percent": 3.19
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:11:52Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 67,
+    "percent": 3.19
+  },
+  "cpu_percent": 11.7
+}
+{
+  "timestamp": "2024-12-31T01:13:05Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:14:18Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:15:31Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 13.1
+}
+{
+  "timestamp": "2024-12-31T01:16:44Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 22.6
+}
+{
+  "timestamp": "2024-12-31T01:17:57Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:19:11Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 0
+}
+{
+  "timestamp": "2024-12-31T01:20:24Z",
+  "container_id": 201,
+  "status": "running",
+  "memory": {
+    "total_mb": 2096,
+    "used_mb": 65,
+    "percent": 3.1
+  },
+  "cpu_percent": 0
+}

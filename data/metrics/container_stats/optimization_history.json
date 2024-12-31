@@ -1,0 +1,17 @@
+{
+  "timestamp": "2024-12-31T01:20:49Z",
+  "optimizations": {
+    "ct200": {
+      "memory_mb": 4193
+    },
+    "ct201": {
+      "memory_mb": 2096
+    },
+    "ct202": {
+      "memory_mb": 2096
+    },
+    "ct203": {
+      "memory_mb": 1048
+    }
+  }
+}

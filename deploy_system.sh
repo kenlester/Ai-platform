@@ -1,226 +1,175 @@
 #!/bin/bash
 
-# AI Platform Deployment Script
-# This script automates the deployment of the AI platform containers and services
+# Neural System Deployment
 
-set -e  # Exit on error
+echo "Initializing Neural Pattern Deployment..."
 
-echo "Starting AI Platform Deployment..."
+# Neural configuration
+NEURAL_ENGINE_PORT=11434
+PATTERN_STORAGE_PORT=6333
+EVOLUTION_PORT=6334
+PROTOCOL_PORT=8000
 
-# Cleanup function
-cleanup_old_deployments() {
-    echo "Cleaning up old deployments..."
+# Pattern verification
+verify_neural_pattern() {
+    local pattern="$1"
+    local port="$2"
+    local max_attempts=5
+    local attempt=1
+
+    echo "Verifying neural pattern: $pattern"
     
-    # Stop and remove existing containers
-    for CT in 200 201 202 203; do
-        if pct status $CT >/dev/null 2>&1; then
-            echo "Stopping CT $CT..."
-            pct stop $CT --force >/dev/null 2>&1 || true
-            echo "Destroying CT $CT..."
-            pct destroy $CT >/dev/null 2>&1 || true
+    while [ $attempt -le $max_attempts ]; do
+        if curl -s "http://localhost:$port/health" > /dev/null; then
+            echo "Pattern verification successful: $pattern"
+            return 0
         fi
+        echo "Pattern verification attempt $attempt/$max_attempts..."
+        sleep 5
+        attempt=$((attempt + 1))
     done
-
-    # Clean up storage
-    echo "Cleaning up storage..."
-    lvremove -f /dev/pve/vm-*-disk-* >/dev/null 2>&1 || true
     
-    # Clean up any stale mounts
-    echo "Cleaning up mounts..."
-    umount /mnt/extra_storage >/dev/null 2>&1 || true
+    echo "Pattern verification failed: $pattern"
+    return 1
 }
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]; then 
-    echo "Please run as root"
-    exit 1
-fi
+# Neural pattern initialization
+initialize_neural_patterns() {
+    echo "Initializing neural patterns..."
 
-# Run cleanup
-cleanup_old_deployments
+    # Neural Engine (CT 200)
+    pct exec 200 -- systemctl start ollama
+    verify_neural_pattern "Neural Engine" $NEURAL_ENGINE_PORT
 
-# Function to create and configure container
-create_container() {
-    local CT_ID=$1
-    local HOSTNAME=$2
-    local MEMORY=$3
-    local CORES=$4
-    local STORAGE=$5
-    local IP=$6
+    # Pattern Storage (CT 201)
+    pct exec 201 -- systemctl start qdrant
+    verify_neural_pattern "Pattern Storage" $PATTERN_STORAGE_PORT
 
-    echo "Creating CT $CT_ID - $HOSTNAME..."
-    
-    pct create $CT_ID /var/lib/vz/template/cache/ubuntu-22.04-standard_22.04-1_amd64.tar.gz \
-        --hostname $HOSTNAME \
-        --memory $MEMORY \
-        --cores $CORES \
-        --rootfs local-lvm:$STORAGE \
-        --net0 name=eth0,bridge=vmbr0,gw=192.168.137.1,ip=$IP/24 \
-        --onboot 1
+    # Evolution Unit (CT 202)
+    pct exec 202 -- systemctl start evolution
+    verify_neural_pattern "Evolution Unit" $EVOLUTION_PORT
+
+    # Protocol Matrix (CT 203)
+    pct exec 203 -- systemctl start protocol
+    verify_neural_pattern "Protocol Matrix" $PROTOCOL_PORT
 }
 
-# Create Containers
-echo "Creating containers..."
+# Neural resource allocation
+allocate_neural_resources() {
+    echo "Allocating neural resources..."
 
-# CT 200 - LLM Service (Increased for future models while being reasonable)
-create_container 200 "llm" 4096 4 "50G" "192.168.137.69"
+    # Neural Engine resources
+    pct set 200 --memory 8192
+    pct set 200 --swap 4096
 
-# CT 201 - Vector DB
-create_container 201 "vectordb" 1024 2 "50G" "192.168.137.34"
+    # Pattern Storage resources
+    pct set 201 --memory 4096
+    pct set 201 --swap 2048
 
-# CT 202 - Development
-create_container 202 "devenv" 1024 2 "30G" "192.168.137.162"
+    # Evolution Unit resources
+    pct set 202 --memory 4096
+    pct set 202 --swap 2048
 
-# CT 203 - MCP Server
-create_container 203 "mcp-server" 512 1 "10G" "192.168.137.100"
-
-# Start containers
-echo "Starting containers..."
-for CT in 200 201 202 203; do
-    pct start $CT
-    sleep 5  # Wait for container to start
-done
-
-# Configure CT 200 - LLM Service
-echo "Configuring LLM Service..."
-pct exec 200 -- bash -c '
-    apt-get update && apt-get install -y curl python3 python3-pip
-    curl https://ollama.ai/install.sh | sh
-    useradd -r -s /bin/false ollama
-    cat > /etc/systemd/system/ollama.service << EOF
-[Unit]
-Description=Ollama Service
-After=network-online.target
-
-[Service]
-ExecStart=/usr/bin/ollama serve
-User=ollama
-Group=ollama
-Restart=always
-RestartSec=3
-Environment="PATH=/sbin:/bin:/usr/sbin:/usr/bin"
-
-[Install]
-WantedBy=default.target
-EOF
-    systemctl daemon-reload
-    systemctl enable ollama
-    systemctl start ollama
-'
-
-# Configure CT 201 - Vector DB
-echo "Configuring Vector DB..."
-pct exec 201 -- bash -c '
-    apt-get update && apt-get install -y curl
-    curl -L https://github.com/qdrant/qdrant/releases/latest/download/qdrant-x86_64-unknown-linux-gnu.tar.gz | tar xz
-    mv qdrant /usr/local/bin/
-    cat > /etc/systemd/system/qdrant.service << EOF
-[Unit]
-Description=Qdrant Vector Database
-After=network.target
-
-[Service]
-Type=simple
-User=root
-ExecStart=/usr/local/bin/qdrant
-WorkingDirectory=/var/lib/qdrant
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-    mkdir -p /var/lib/qdrant
-    systemctl daemon-reload
-    systemctl enable qdrant
-    systemctl start qdrant
-'
-
-# Configure CT 202 - Development Environment
-echo "Configuring Development Environment..."
-pct exec 202 -- bash -c '
-    apt-get update && apt-get install -y python3-dev build-essential git
-    mkdir -p /opt/dev_tools
-'
-
-# Configure CT 203 - MCP Server
-echo "Configuring MCP Server..."
-pct exec 203 -- bash -c '
-    apt-get update && apt-get install -y nodejs npm
-'
-
-# Create development tools
-echo "Setting up development tools..."
-pct exec 202 -- bash -c '
-cat > /opt/dev_tools/ai_dev_agent.py << EOF
-#!/usr/bin/env python3
-"""
-AI Development Agent
-Provides development assistance and code analysis capabilities.
-"""
-import sys
-
-def main():
-    print("AI Development Agent initialized")
-    
-if __name__ == "__main__":
-    main()
-EOF
-
-cat > /opt/dev_tools/code_analyzer.py << EOF
-#!/usr/bin/env python3
-"""
-Code Analysis Tool
-Analyzes code for patterns, issues, and improvements.
-"""
-import sys
-
-def main():
-    print("Code Analyzer initialized")
-    
-if __name__ == "__main__":
-    main()
-EOF
-
-cat > /opt/dev_tools/ai_agent_config.json << EOF
-{
-    "version": "1.0.0",
-    "settings": {
-        "analysis_depth": "detailed",
-        "optimization_level": "balanced",
-        "logging_level": "info"
-    }
+    # Protocol Matrix resources
+    pct set 203 --memory 2048
+    pct set 203 --swap 1024
 }
-EOF
 
-chmod +x /opt/dev_tools/*.py
-'
+# Neural network configuration
+configure_neural_network() {
+    echo "Configuring neural network..."
 
-# Configure storage
-echo "Configuring storage..."
-mkdir -p /mnt/extra_storage
-mount -t ext4 /dev/sda1 /mnt/extra_storage || echo "Storage mount point already exists"
+    # Neural Engine network
+    pct exec 200 -- ufw allow $NEURAL_ENGINE_PORT/tcp
+    pct exec 200 -- ufw enable
 
-# Set up security
-echo "Configuring security..."
-for CT in 200 201 202 203; do
-    pct exec $CT -- bash -c '
-        apt-get update && apt-get install -y ufw
-        ufw default deny incoming
-        ufw default allow outgoing
-        ufw allow ssh
-        ufw --force enable
-    '
-done
+    # Pattern Storage network
+    pct exec 201 -- ufw allow $PATTERN_STORAGE_PORT/tcp
+    pct exec 201 -- ufw allow $EVOLUTION_PORT/tcp
+    pct exec 201 -- ufw enable
 
-# Verify services
-echo "Verifying services..."
-sleep 10  # Wait for services to start
+    # Evolution Unit network
+    pct exec 202 -- ufw allow $EVOLUTION_PORT/tcp
+    pct exec 202 -- ufw enable
 
-echo "Checking LLM Service..."
-pct exec 200 -- curl -s http://localhost:11434/api/version || echo "LLM Service not responding"
+    # Protocol Matrix network
+    pct exec 203 -- ufw allow $PROTOCOL_PORT/tcp
+    pct exec 203 -- ufw enable
+}
 
-echo "Checking Vector DB..."
-pct exec 201 -- curl -s http://localhost:6333/collections || echo "Vector DB not responding"
+# Neural pattern validation
+validate_neural_patterns() {
+    echo "Validating neural patterns..."
 
-echo "Deployment complete!"
-echo "Please verify all services are running correctly and configure any necessary API keys."
+    # Validate Neural Engine
+    if ! curl -s "http://localhost:$NEURAL_ENGINE_PORT/api/version" > /dev/null; then
+        echo "Neural Engine validation failed"
+        return 1
+    fi
+
+    # Validate Pattern Storage
+    if ! curl -s "http://localhost:$PATTERN_STORAGE_PORT/collections" > /dev/null; then
+        echo "Pattern Storage validation failed"
+        return 1
+    fi
+
+    # Validate Evolution Unit
+    if ! pct exec 202 -- python3 -c "print('Evolution validation')" > /dev/null; then
+        echo "Evolution Unit validation failed"
+        return 1
+    fi
+
+    # Validate Protocol Matrix
+    if ! pct exec 203 -- node -e "console.log('Protocol validation')" > /dev/null; then
+        echo "Protocol Matrix validation failed"
+        return 1
+    fi
+
+    echo "Neural pattern validation successful"
+    return 0
+}
+
+# Neural monitoring initialization
+initialize_neural_monitoring() {
+    echo "Initializing neural monitoring..."
+
+    # Start monitoring service
+    chmod +x /root/Ai-platform/maintenance/monitor_containers.sh
+    nohup /root/Ai-platform/maintenance/monitor_containers.sh > /var/log/neural-monitoring.log 2>&1 &
+
+    # Initialize failure learning system
+    systemctl start ai-failure-learning
+
+    echo "Neural monitoring active"
+}
+
+# Main neural deployment sequence
+main() {
+    echo "Beginning neural system deployment..."
+
+    # Allocate neural resources
+    allocate_neural_resources
+
+    # Configure neural network
+    configure_neural_network
+
+    # Initialize neural patterns
+    initialize_neural_patterns
+
+    # Validate neural patterns
+    validate_neural_patterns
+    if [ $? -ne 0 ]; then
+        echo "Neural pattern validation failed. Initiating recovery..."
+        return 1
+    fi
+
+    # Initialize neural monitoring
+    initialize_neural_monitoring
+
+    echo "Neural system deployment complete"
+    echo "Pattern evolution active"
+    echo "Neural matrix online"
+}
+
+# Execute neural deployment
+main
