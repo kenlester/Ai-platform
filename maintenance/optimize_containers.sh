@@ -75,6 +75,16 @@ pct exec 203 -- bash -c '
 export NODE_ENV=production
 npm config set prefer-offline true # Use cached modules when possible
 
+# Install Redis for distributed caching
+if ! command -v redis-cli &> /dev/null; then
+    apt-get update && apt-get install -y redis-server
+    # Configure Redis
+    sed -i "s/bind 127.0.0.1/bind 0.0.0.0/" /etc/redis/redis.conf
+    sed -i "s/# maxmemory <bytes>/maxmemory 512mb/" /etc/redis/redis.conf
+    sed -i "s/# maxmemory-policy noeviction/maxmemory-policy allkeys-lru/" /etc/redis/redis.conf
+    systemctl restart redis-server
+fi
+
 # Set up PM2 for process management if not already installed
 if ! command -v pm2 &> /dev/null; then
     npm install -g pm2
@@ -82,7 +92,7 @@ if ! command -v pm2 &> /dev/null; then
     export PATH="/usr/local/bin:$PATH"
 fi
 
-# PM2 configuration for MCP server
+# PM2 configuration for MCP server with optimizations
 cat > ecosystem.config.js << EOF
 module.exports = {
   apps: [{
@@ -92,11 +102,59 @@ module.exports = {
     exec_mode: "cluster",
     max_memory_restart: "150M",
     env: {
-      NODE_ENV: "production"
+      NODE_ENV: "production",
+      ENABLE_PATTERN_RECOGNITION: "true",
+      PATTERN_CONFIDENCE_THRESHOLD: "0.8",
+      CACHE_STRATEGY: "distributed",
+      REDIS_URL: "redis://localhost:6379",
+      TOKEN_OPTIMIZATION: "true",
+      BATCH_PROCESSING: "true",
+      COMPRESSION_THRESHOLD: "1024",
+      METRICS_RETENTION_DAYS: "30"
     }
   }]
 }
 EOF
+
+# Set up pattern monitoring
+cat > /usr/local/bin/monitor_patterns.sh << EOF
+#!/bin/bash
+
+LOG_DIR="/root/Ai-platform/data/metrics/pattern_stats"
+mkdir -p \$LOG_DIR
+
+while true; do
+    # Monitor pattern recognition stats
+    redis-cli INFO | grep pattern > "\$LOG_DIR/pattern_stats.txt"
+    
+    # Monitor cache hit rates
+    redis-cli INFO stats | grep cache_hit > "\$LOG_DIR/cache_stats.txt"
+    
+    # Monitor token optimization
+    redis-cli HGETALL token_savings > "\$LOG_DIR/token_stats.txt"
+    
+    sleep 300
+done
+EOF
+chmod +x /usr/local/bin/monitor_patterns.sh
+
+# Create systemd service for pattern monitoring
+cat > /etc/systemd/system/pattern-monitor.service << EOF
+[Unit]
+Description=AI Pattern Recognition Monitor
+After=redis-server.service
+
+[Service]
+ExecStart=/usr/local/bin/monitor_patterns.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable pattern-monitor
+systemctl start pattern-monitor
 '
 
 # CT 202 (Development) Optimization

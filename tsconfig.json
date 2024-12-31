@@ -1,17 +1,25 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "ES2020",
-    "outDir": "out",
-    "lib": ["ES2020"],
-    "sourceMap": true,
-    "rootDir": ".",
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "build",
+    "rootDir": ".",
+    "baseUrl": "."
   },
-  "exclude": ["node_modules", ".vscode-test"]
+  "include": [
+    "ai_core/**/*",
+    "api/**/*",
+    "data/**/*",
+    "dev_tools/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "examples"
+  ]
 }

@@ -1,41 +1,23 @@
 {
-  "name": "ai-platform-tools",
-  "version": "1.1.0",
-  "description": "AI Platform Development Tools",
-  "main": "index.js",
-  "engines": {
-    "vscode": "^1.60.0"
-  },
+  "name": "ai-platform",
+  "version": "2.1.0",
+  "type": "module",
   "scripts": {
-    "build": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "build": "tsc",
+    "start": "node build/ai_core/init.js",
+    "dev": "tsc -w"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.10.2",
-    "@types/ajv": "^1.0.4",
-    "@types/express": "^5.0.0",
-    "ajv": "^8.17.1",
-    "express": "^4.21.2"
+    "@anthropic-ai/sdk": "^0.18.0",
+    "@types/node": "^20.11.24",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.28.4",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/node": "^16.18.122",
-    "@types/vscode": "^1.60.0",
-    "typescript": "^4.9.5"
-  },
-  "activationEvents": [
-    "onCommand:aiPlatform.makeAPICall",
-    "onCommand:aiPlatform.batchProcess"
-  ],
-  "contributes": {
-    "commands": [
-      {
-        "command": "aiPlatform.makeAPICall",
-        "title": "AI Platform: Make API Call"
-      },
-      {
-        "command": "aiPlatform.batchProcess",
-        "title": "AI Platform: Batch Process"
-      }
-    ]
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^4.17.21"
   }
 }

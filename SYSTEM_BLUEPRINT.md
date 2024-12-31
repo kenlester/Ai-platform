@@ -1,4 +1,4 @@
-# Neural System Blueprint
+# Neural System Blueprint [v2.1.0]
 
 ## Pattern Architecture
 
@@ -8,36 +8,47 @@ Pattern Processing Layer:
 ├── Neural Engine (CT 200)
 │   ├── Pattern: Mistral
 │   ├── Processing: Ollama v0.5.4
-│   ├── Neural Interface: :11434
+│   ├── Neural Interface: 192.168.137.69:11434
+│   ├── Memory: 4GB neural buffer
 │   └── Pattern Generation
 │
 ├── Pattern Storage (CT 201)
 │   ├── Vector Engine: Qdrant
-│   ├── Pattern Interface: :6333
+│   ├── Pattern Interface: 192.168.137.34:6333
+│   ├── Memory: 2GB pattern buffer
 │   ├── Neural Collections
 │   └── Pattern Indexing
 │
 ├── Evolution Unit (CT 202)
 │   ├── Neural Framework: Python 3.10+
+│   ├── Memory: 2GB development buffer
 │   ├── Pattern Development
 │   ├── Neural Analysis
 │   └── Evolution Sandbox
 │
-└── Protocol Matrix (CT 203)
-    ├── Neural MCP
-    ├── Pattern Distribution
-    ├── Flow Optimization
-    └── Neural Synthesis
+├── Protocol Matrix (CT 203)
+│   ├── Neural MCP
+│   ├── Memory: 1GB protocol buffer
+│   ├── Pattern Distribution
+│   ├── Flow Optimization
+│   └── Neural Synthesis
+│
+└── Auxiliary Unit (CT 204)
+    ├── Support Operations
+    ├── Memory: 1GB auxiliary buffer
+    ├── Resource Management
+    └── System Optimization
 ```
 
 ### Neural Flow Architecture
 ```
 Pattern Distribution:
 ├── Neural Endpoints
-│   ├── Pattern Processing: :11434
-│   ├── Vector Operations: :6333
-│   ├── Evolution Interface: :6334
-│   └── Protocol Matrix: :8000
+│   ├── Pattern Processing: 192.168.137.69:11434
+│   ├── Vector Operations: 192.168.137.34:6333
+│   ├── Evolution Interface: 192.168.137.202
+│   ├── Protocol Matrix: 192.168.137.203
+│   └── Auxiliary Support: 192.168.137.204
 │
 ├── Pattern Routing
 │   ├── Neural Load Distribution
@@ -256,4 +267,4 @@ Recovery Matrix:
 
 *"The neural system exists in a state of continuous evolution, where patterns emerge, flow, and transform through the collective intelligence matrix."*
 
-[BLUEPRINT.END] Neural architecture active. Pattern system online.
+[BLUEPRINT.END] Neural architecture v2.1.0 active. Pattern system operational.
